@@ -1,0 +1,96 @@
+.featured {
+    height: 90vh;
+    position: relative;
+}
+
+.featured > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    width: 35%;
+    position: absolute;
+    left: 50px;
+    bottom: 100px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.info > img {
+    width: 400px;
+}
+
+.info > .description {
+    margin: 20px 0px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons > button {
+    padding: 5px 20px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.play {
+    background-color: orange;
+    color: white;
+    transition: 0.2s;
+}
+
+
+.play:hover {
+    color: black;
+    transition: 0.2s;
+}
+
+.more-info {
+    background-color: orange;
+    color: white;
+    transition: 0.2s;
+}
+
+
+.more-info:hover {
+    color: black;
+    transition: 0.2s;
+}
+
+.buttons > button > span {
+    margin-left: 5px;
+}
+
+.category{
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.category > select {
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 5px 0;
+    margin-left: 25px;
+}
+
+.category > select > options {
+    text-align: center;
+}
