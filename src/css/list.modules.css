@@ -11,14 +11,14 @@
 }
 
 .wrapper > .container {
-    margin-left: 50px;
+    /* margin-left: 50px; */
     display: flex;
     width: max-content;
     transform: translate(0px);
 }
 
 .container {
-    margin-left: 50px;
+    /* margin-left: 50px; */
     display: flex;
     margin-top: 10px;
     width: max-content;
@@ -42,6 +42,10 @@
     margin: auto;
     cursor: pointer;
 }
+
+/* .scroll {
+    overflow: scroll;
+} */
 
 .left {
     left: 0;
