@@ -1,41 +1,37 @@
 .list{
     width: 100%;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .listTitle {
+    /* background-color: #ff7e00; */
+    padding: 5px 15px;
     color: #fff; 
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 500;
     margin-left: 50px;
 }
 
-.wrapper > .container {
-    margin-left: 50px;
-    display: flex;
-    width: max-content;
-    transform: translate(0px);
-}
-
-.container {
+.content-container {
     margin-left: 50px;
     display: flex;
     margin-top: 10px;
     width: max-content;
     transform: translateX(0px);
     transition: all 1s ease;
+    overflow-x: auto;
 }
 
-.wrapper {
+.content-wrapper {
     position: relative;
     overflow-x: auto;
 }
 
-.wrapper::-webkit-scrollbar {
+.content-wrapper::-webkit-scrollbar {
     width: 0;
 }
 
-.wrapper > .sliderArrow {
+/* .wrapper > .sliderArrow {
     width: 50px;
     height: 100%;
     background-color: rgb(255,255,255, 0.8);
@@ -46,7 +42,7 @@
     bottom: 0;
     margin: auto;
     cursor: pointer;
-}
+} */
 
 /* .scroll {
     overflow: scroll;

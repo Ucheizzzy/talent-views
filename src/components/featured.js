@@ -31,10 +31,7 @@ const featured = ({type}) => {
             alt="" 
             />
             <div className="info">
-                <img 
-                src="./design.jpeg" 
-                alt="" 
-                />
+                <span className="film-title">Design</span>
                 <span className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                 Porro id eveniet voluptatibus itaque! Et exercitationem impedit molestias doloremque velit, 
                 voluptate quisquam magni nemo laudantium quo explicabo dolor molestiae, corporis odio.

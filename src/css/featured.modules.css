@@ -19,8 +19,9 @@
     flex-direction: column;
 }
 
-.info > img {
-    width: 400px;
+.info > .film-title {
+    font-size: 100px;
+    font-weight: 800;
 }
 
 .info > .description {
@@ -43,27 +44,27 @@
 }
 
 .play {
-    background-color: orange;
+    background-color: #ff7e00;
     color: white;
-    transition: 0.2s;
+    transition: 0.7s;
 }
 
 
 .play:hover {
     color: black;
-    transition: 0.2s;
+    transition: 0.7s;
 }
 
 .more-info {
-    background-color: orange;
+    background-color: #ff7e00;
     color: white;
-    transition: 0.2s;
+    transition: 0.7s;
 }
 
 
 .more-info:hover {
     color: black;
-    transition: 0.2s;
+    transition: 0.7s;
 }
 
 .buttons > button > span {

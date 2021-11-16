@@ -8,16 +8,16 @@ const ListItem = ({index}) => {
     const trailer = '/fdp.mp4'
     return (
         <div className='listItem'
-        style={{left: isHovered && index * 225 -50 + index * 2.5}}
+        style={{left: isHovered && index * 225 -50 + index * 15}}
         onMouseEnter={()=> setIsHovered(true)} 
         onMouseLeave={()=> setIsHovered(false)}
         >
             <img 
-            src="sky.jpeg" 
+            src="/sky.jpeg" 
             alt="" />
             {isHovered && (
-             <>
-            <video className="listVideo" src={trailer} autoPlay={true} loop/>
+            < >
+            <video className="listVideo" src={trailer} autoPlay={true} loop />
             <div className="itemInfo">
                 <div className="itemIcons">
                     {/* <PlayArrowOutlined style={{fontSize: '15px'}} className="itemIcon"/>

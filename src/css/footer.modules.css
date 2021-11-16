@@ -1,0 +1,22 @@
+.footer-container {
+    background-color: #000;
+}
+
+.footer-content {
+    width: 80%;
+    margin: 30px auto;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: white;
+}
+
+.footer-content > span {
+    margin: 20px auto;
+    font-size: 12px;
+}
+
+.footer-content > span:hover {
+    color: #ff7e00;
+    cursor: pointer;
+}

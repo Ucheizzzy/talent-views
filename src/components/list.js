@@ -1,12 +1,13 @@
 import ListItem from './listItem'
-import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons'
+// import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons'
 import '../css/list.modules.css'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import HorizontalScroll from 'react-scroll-horizontal'
+import Contentlistitem from './Contentlistitem'
 
 
-const List = () => {
+const List = (props) => {
     // const [slideNumber, setSlideNumber] = useState(0);
     // const [isMoved, setIsMoved] = useState(false);
 
@@ -26,15 +27,15 @@ const List = () => {
     // }
     return (
         <div className='list'>
-            <span className="listTitle">Continue to watch</span>
-            <div className="wrapper" style={{overflowX: 'visible'}}>
+            <span className="listTitle">{props.name}</span>
+            <div className="wrapper" style={{overflowX: 'auto'}}>
                 {/* <ArrowBackIosOutlined 
                 className='sliderArrow left' 
                 onClick={()=>handleClick('left')}
                 style={{display: !isMoved && 'none'}}
                 /> */}
                 {/* <HorizontalScroll className="scroll" style={{overflow:'visible', position:'relative'}}> */}
-                <div className="container" ref={listRef} > 
+                <div className="container" ref={listRef} >
                     <Link to="/home/watch">
                         <ListItem index={0}/>
                     </Link>

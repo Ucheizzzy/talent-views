@@ -26,7 +26,7 @@ const Navbar = () => {
                     <Search className='icon'/>
                     <span>Riley</span>
                     <Notifications className='icon'/>
-                    <img src="./riley.jpg" alt="" />
+                    <img src="/riley.jpg" alt="" />
                     <div className="profile">
                         <ArrowDropDown className='icon'/>
                         <div className="options">
