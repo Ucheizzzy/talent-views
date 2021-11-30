@@ -1,5 +1,5 @@
 import ListItem from './listItem'
-// import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons'
+import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons'
 import '../css/list.modules.css'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -7,68 +7,50 @@ import HorizontalScroll from 'react-scroll-horizontal'
 import Contentlistitem from './Contentlistitem'
 
 
-const List = (props) => {
-    // const [slideNumber, setSlideNumber] = useState(0);
-    // const [isMoved, setIsMoved] = useState(false);
+const List = ({list}) => {
+    const [slideNumber, setSlideNumber] = useState(0);
+    const [isMoved, setIsMoved] = useState(false);
 
     const listRef = useRef()
 
-    // const handleClick = (direction) => {
-    //     setIsMoved(true)
-    //     let distance = listRef.current.getBoundingClientRect().x - 50
-    //     if (direction === 'left' &&  slideNumber > 0){
-    //         setSlideNumber(slideNumber - 1)
-    //         listRef.current.style.transform = `translateX(${230 + distance}px)`
-    //     }
-    //     if (direction === 'right' && slideNumber < 5){
-    //         setSlideNumber(slideNumber + 1)
-    //         listRef.current.style.transform = `translateX(${-230 + distance}px)`
-    //     }
-    // }
+    const handleClick = (direction) => {
+        setIsMoved(true)
+        let distance = listRef.current.getBoundingClientRect().x - 50
+
+        let dist = listRef.current.getBoundingClientRect()
+        console.log(dist)
+        if (direction === 'left' &&  slideNumber > 0){
+            setSlideNumber(slideNumber - 1)
+            listRef.current.style.transform = `translateX(${970 + distance}px)`
+        }
+        if (direction === 'right' && slideNumber < 1){
+            setSlideNumber(slideNumber + 1)
+            listRef.current.style.transform = `translateX(${-970 + distance}px)`
+        }
+    }
+
+    // console.log(list)
     return (
         <div className='list'>
-            <span className="listTitle">{props.name}</span>
-            <div className="wrapper" style={{overflowX: 'auto'}}>
-                {/* <ArrowBackIosOutlined 
+            <span className="listTitle">{list.title}</span>
+            <div className="wrapper">
+                <ArrowBackIosOutlined 
                 className='sliderArrow left' 
                 onClick={()=>handleClick('left')}
                 style={{display: !isMoved && 'none'}}
-                /> */}
+                />
                 {/* <HorizontalScroll className="scroll" style={{overflow:'visible', position:'relative'}}> */}
                 <div className="container" ref={listRef} >
+                    {list.content.map((item, i) => (
                     <Link to="/home/watch">
-                        <ListItem index={0}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={1}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={2}/>
-                    </Link>
-                    <Link to="/home/watch">    
-                        <ListItem index={3}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={4}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={5}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={6}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={7}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={8}/>
-                    </Link>
-                    <Link to="/home/watch">
-                        <ListItem index={9}/>
-                    </Link>   
+                        <div className="list-item-2">
+                            <ListItem index={i} item={item}/>
+                        </div>
+                    </Link>  
+                    ))}
                 </div>
                 {/* </HorizontalScroll>  */}
-                {/* <ArrowForwardIosOutlined className='sliderArrow right' onClick={()=>handleClick('right')}/> */}
+                <ArrowForwardIosOutlined className='sliderArrow right' onClick={()=>handleClick('right')}/>
             </div>
         </div>
     )

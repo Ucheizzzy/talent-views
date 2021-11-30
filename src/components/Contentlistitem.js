@@ -1,25 +1,24 @@
-import { useState }from 'react'
+import { useEffect, useState }from 'react'
+import axios from 'axios'
 import '../css/contentlistitem.modules.css'
 import { Link } from 'react-router-dom'
 
-const Contentlistitem = ({ index }) => {
+const Contentlistitem = ({ card }) => {
 
-    const [isHovered, setIsHovered] = useState(false)
-    const trailer = '/fdp.mp4'
+    console.log(card.image[0])
+    // const [movie, setMovie] = useState({})
+
+    // const trailer = '/fdp.mp4'
     return (
-        <div className='contentlistitem'
-        style={{left: isHovered && index * 180 + index * 35}}
-        onMouseEnter={()=> setIsHovered(true)} 
-        onMouseLeave={()=> setIsHovered(false)}>
-            <img 
-            src="sky.jpeg" 
+        <div className='content-list-item'>
+            
+            <img
+            src={card.image[0]}
             alt="" />
-            {isHovered && (
-            <video className="contentlistVideo" src={trailer} autoPlay={true} loop/> 
-            )}
-            <Link to="/home/watch">
-                <span className='watch-now'>Watch Now</span>
-            </Link>
+            {/* {isHovered && ( */}
+            {/* // <video className="contentlistVideo" src={trailer} autoPlay={true} loop/>  */}
+            {/* )} */}
+                <span className='content-title'>{card.title}</span>
         </div>
     )
 }

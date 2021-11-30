@@ -8,31 +8,32 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 
-const Contentlist = () => {
+const FakeContentlist = ({content}) => {
     const history = useHistory();
 
-    const [featured, setFeatured] = useState([])
 
-    useEffect(() => {
-        const getFeatured = async () => {
-            const res = await axios.get('/movies/featured', {
-                headers: {
-                    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
-                }
+        console.log(content)
+    // const [featured, setFeatured] = useState([])
+
+    // useEffect(() => {
+    //     const getFeatured = async () => {
+    //         const res = await axios.get('/movies/featured', {
+    //             headers: {
+    //                 token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
+    //             }
                 
-            })
-            console.log(res.data)
-            setFeatured(res.data)
-        }
-        getFeatured()
+    //         })
+    //         setFeatured(res.data)
+    //     }
+    //     getFeatured()
 
-        const unlisten = history.listen(() => {
-            window.scrollTo(0, 0);
-          });
-          return () => {
-            unlisten();
-          }
-    }, [])
+    //     const unlisten = history.listen(() => {
+    //         window.scrollTo(0, 0);
+    //       });
+    //       return () => {
+    //         unlisten();
+    //       }
+    // }, [])
 
 
     // const [slideNumber, setSlideNumber] = useState(0);
@@ -57,15 +58,15 @@ const Contentlist = () => {
             <span className="listTitle">Recommended</span>
             <div className="content-wrapper" >
                 <div className="content-container" ref={listRef} >
-                    {featured.map((card) => (
-                        <Link to={`/content/${card._id}`} style={{textDecoration: 'none'}} >
-                            <ContentlistItem card={card} />
-                        </Link>
-                    ))}
+                    {content.map(card => (
+                        <Link to={`/content/${card._id}`} style={{textDecoration: 'none'}} > 
+                             <ContentlistItem card={card} /> 
+                        </Link> 
+                     ))} 
                 </div>
             </div>
         </div>
     )
 }
 
-export default Contentlist
+export default FakeContentlist

@@ -9,26 +9,34 @@
     font-weight: 500;
     margin-left: 50px;
 }
-
+/* 
 .wrapper > .container {
     margin-left: 50px;
     display: flex;
     width: max-content;
     transform: translate(0px);
+} */
+
+
+.list-item-2 {
+
 }
 
 .container {
     margin-left: 50px;
     display: flex;
     margin-top: 10px;
+    margin-bottom: 10px;
     width: max-content;
     transform: translateX(0px);
     transition: all 1s ease;
 }
 
 .wrapper {
+    z-index: 1;
     position: relative;
-    overflow-x: auto;
+    /* overflow-x: auto; */
+    /* padding: 90px 0 */
 }
 
 .wrapper::-webkit-scrollbar {
