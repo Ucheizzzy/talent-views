@@ -1,22 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../css/contentdescription.modules.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useLayoutEffect } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router'
+// import { useParams } from 'react-router'
 import '../css/film.modules.css'
-import List from './list'
+// import List from './list'
 import Footer from './footer'
 import '../css/featured.modules.css'
 import Navbar from './navbar'
 import Contentlist from './contentlist'
+import {useParams} from 'react-router-dom'
+
 
  
 
-const ContentDescription = ({match}) => {
+const ContentDescription = () => {
     
-    console.log(match)
-    
+    // console.log(match)
+    const {id} = useParams()
     
 const [movie, setMovie] = useState({
     title: '',
@@ -25,27 +27,29 @@ const [movie, setMovie] = useState({
     duration: '',
     year: '',
     ageLimit: '',
-    image: '',
+    image: [],
+    trailer: [],
+    thumbnail: [],
     content: [],
     description: '',
 })
-    
-const [desc, setDesc] = useState([])
+// const [content, setContent] = useState([])
+const [image, setImage] = useState('')
 
 
     useEffect(() => {
         const getMovie = async () => {
 
             try {
-                const res = await axios.get(`/movies/find/${match.params.id}`, {
+                const {data} = await axios.get(`/movies/find/${id}`, {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
+                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+                        
                     }
                 })
-                setMovie(res.data)
-                console.log(res.data)
-                setDesc(res.data.content)
-                console.log(res.data.content)
+                setMovie(data)
+                setImage(data.image[0])
+                window.scrollTo(0, 0);
             } catch (err) {
                 console.log(err)
             }
@@ -53,7 +57,7 @@ const [desc, setDesc] = useState([])
 
         }
         getMovie()
-    }, [])
+    }, [id])
 
 
 
@@ -61,24 +65,22 @@ const [desc, setDesc] = useState([])
         <>
         <Navbar />
         <div className='featured' >
-             <img style={{position: "fixed"}}
-            width='100%'
-            height='100%'
-            src={movie.image[0]}
+             <img className='featured-jumbotron'
+            //  style={{position: "fixed"}}
+            // height='100%'
+            src={image.image}
             alt="" 
             />
             <div className="info">
             <span className="film-desc-title">{movie.title}</span>
             <div className="film-details">
-                    <span>
-                        <ul>
-                            <li>Genre: <span>{movie.genre}</span></li>
-                            <li>Director: <span>{movie.director}</span></li>
-                            <li>Duration: <span>{movie.duration}</span></li>
-                            <li>Year: <span>{movie.year}</span></li>
-                            <li>Rated: <span>{movie.ageLimit}</span></li>
-                        </ul>
-                    </span>
+                        <span className="ul">
+                        <p>Genre: <span>{movie.genre}</span></p>
+                        <p>Director: <span>{movie.director}</span></p>
+                        <p>Duration: <span>{movie.duration}</span></p>
+                        <p>Year: <span>{movie.year}</span></p>
+                        <p>Rated: <span>{movie.ageLimit}</span></p>
+                        </span>
                 </div>
             </div>
 
@@ -91,7 +93,7 @@ const [desc, setDesc] = useState([])
             </div>
             <div className="abouts-container">
                 <div className="film-description">
-                    <span>
+                    <span >
                         {movie.description}
                     </span>
                 </div>
@@ -101,25 +103,26 @@ const [desc, setDesc] = useState([])
             <div className="section-2">
                 <div className="film-content-container">
                 
-                {movie.content.map((mov, id) => (
-                    <div className="img" key={id}>
-                        <Link to={`/content/watch/${movie._id}`} className='i-m-g'>
+                {movie.content.map((mov) => (
+                    <Link to={`/content/watch/${mov._id}`} key={mov._id} className='i-m-g'>
+                    <div className="img" >
+                        
                             <img
                             className='glow'
-                            src={movie.image[0]}
+                            src={image.image}
                             alt="" />
-                        </Link> 
+                        
                         < >
                         
                         <div className="desk">
                             <span className="new-title">{mov.title}</span>
-                            <span>{mov.duration}</span>
-                            <span>Rated +{mov.ageLimit}</span>
-                            <span className='span'>{mov.description}</span>
+                            <span className='c-span'>{mov.duration}</span>
+                            <span className='c-span'>{mov.description}</span>
                         </div>
                         </>
 
                      </div>
+                     </Link> 
                    ))}
                     
                     </div>

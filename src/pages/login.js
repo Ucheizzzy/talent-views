@@ -1,19 +1,49 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, 
+    useEffect, 
+    useState } from 'react'
 import { login } from '../authContext/apicalls';
 import { AuthContext } from '../authContext/authContext';
+import { Visibility, VisibilityOff } from '@material-ui/icons'
 import axios from 'axios';
 import '../css/login.modules.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const [show, setShow] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [random, setRandom] = useState([])
+    const [submitted, setSubmitted] = useState(false)
+    const history = useNavigate()
     const { dispatch } = useContext(AuthContext)
 
-    const handleClick = (e) => {
+
+    const handleShowHide = () => {
+        setShow(!show)
+    }
+
+    const handleClick = async(e) => {
         e.preventDefault()
+
+        if (!email && !password){
+            
+            setSubmitted(false)
+        }
+        setSubmitted(true) 
+
         login({email, password}, dispatch)
+       
+        // const user = {
+        //     email: email,
+        //     password: password
+        // }
+        
+        // try {
+        //     await axios.post('auth/login', user)
+        //     // history.push('/')
+        // } catch (err) {
+        //     console.log(err.message)
+        // }
     }
 
 
@@ -21,20 +51,24 @@ const Login = () => {
         const getRandom = async () => {
             const res = await axios.get('/movies/random', {
                 headers: {
-                    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
+                    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
                 }
             })
             setRandom(res.data[0].image[0])
-            console.log(res.data[0])
+            // console.log(res.data[0].image[0])
         }
         getRandom()
     }, [])
 
 
-
     
     return (
-        <div className='log-login' style={{backgroundImage: `url(${random})`}}>
+        <div className='log-login' 
+        style=
+        {
+            {backgroundImage: `url(${random.image})`}
+            }
+            >
             <div className="top-container">
                 <div className="my-logo">
                     <span>talentcroft</span>
@@ -43,11 +77,43 @@ const Login = () => {
             <div className="form-container">
             <div className="log-container">
                 <form className='log-form' action="/">
-                    <h1>Sign In</h1>
-                    <input type="email" placeholder='email or phone number...' onChange={(e) => setEmail(e.target.value)}/>
-                    <input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)}/>
-                    <button className="log-button" onClick={handleClick}>Sign In</button>
-                    <span>New to talentcroft views? Sign up <Link to='/register' 
+                    <h1 className="sign-in">Sign In</h1>
+                    { submitted && 
+                        !email.includes("@")? 
+                        (<p
+                        style={{
+                            color: 'red',
+                        }}>Please input the correct email and try again!</p>) : null}
+                        {submitted && !email ?
+                            (<input type="email" className='red' placeholder='Please input your email' autoComplete='false' onChange={(e) => setEmail(e.target.value)}/>) :
+                            (<input type="email" placeholder='Your Email' onChange={(e) => setEmail(e.target.value)}/>)
+                        }
+                        
+                        {submitted && !password ?
+                            (<div className='input-password'>
+                            <input type={show ? "text": "password"} className='red' placeholder='Please input your password' onChange={(e) => setPassword(e.target.value)}/>
+                            {
+                                show ? (
+                                    <span className='visibility' onClick={handleShowHide}><Visibility /></span>
+                                ) : (
+                                    <span className='visibility' onClick={handleShowHide}><VisibilityOff /></span>
+                                )
+                            }
+                            </div>) :
+                            (<div className='input-password'>
+                            <input type={show ? "text": "password"}  placeholder='Your Password' onChange={(e) => setPassword(e.target.value)}/>
+                            {
+                                show ? (
+                                    <span className='visibility' onClick={handleShowHide}><Visibility /></span>
+                                ) : (
+                                    <span className='visibility' onClick={handleShowHide}><VisibilityOff /></span>
+                                )
+                            }
+                            </div>)
+                        }
+                        
+                        <button className="log-button" onClick={handleClick}>Sign In</button>
+                    <span className="signup-span">New to talentcroft views? Sign up <Link to='/register' 
                     style={{textDecoration: 'none', color: 'white'}}><b>here</b></Link></span>
                 </form>
             </div>

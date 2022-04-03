@@ -1,29 +1,36 @@
-import { InfoOutlined, PlayArrow } from '@material-ui/icons'
+import { InfoOutlined, 
+    // PlayArrow 
+} from '@material-ui/icons'
+import { useEffect } from 'react'
 import axios from 'axios'
-import React, { useState, useEffect } from 'react' 
+import { useState } from 'react'
+// import React, { useState, useEffect } from 'react' 
 import { Link } from 'react-router-dom'
 import '../css/featured.modules.css'
 
 const Featured = ({type, setGenre}) => {
 
+
     const [content, setContent] = useState({});
+    const [trailer, setTrailer] = useState({});
     const [imagee, setImagee] = useState({})
     const [video, setVideo] = useState({})
     const [isClicked, setIsClicked] = useState(false)
+    const [isHovered, setIsHovered] = useState(false)
     
 
     useEffect(() => {
         const getRandomContent = async () => {
             try {
-                const response = await axios.get('/movies/random?type='+ type, {
+                const {data} = await axios.get('/movies/random?type='+ type, {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
+                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
                     }
                 })
-                setVideo(response.data[0]._id)
-                setContent(response.data[0]);
-                setImagee(response.data[0].image[0])
-                console.log(response.data)
+                setVideo(data[0].content[0])
+                setContent(data[0]);
+                setImagee(data[0].image[0])
+                setTrailer(data[0].trailer[0].trailer)
             } catch (err) {
                 console.log(err)
             }
@@ -31,12 +38,13 @@ const Featured = ({type, setGenre}) => {
         getRandomContent()
     }, [type])
 
-    const handleClick = () => {
-        setIsClicked(true)
-    }
+
 
     return (
-        <div className='featured'>
+        <div className='featured'
+        onMouseEnter={()=> setIsHovered(true)} 
+        onMouseLeave={()=> setIsHovered(false)}
+        >
             {type && (
                 <div className="category">
                     <span>{type === 'Movies' ? 'Movies' : 'Series'}</span>
@@ -57,13 +65,20 @@ const Featured = ({type, setGenre}) => {
                     </select>
                 </div>
             )}
+
+    {!isHovered ? (
             <img 
-            width='100%'
             height='100%'
+            width='100%'
             className='featured-image'
-            src={imagee}
+            src={imagee.image}
             alt="" 
             />
+    ) : (
+                <>
+            <video className="featured-image-2" src={trailer} autoPlay={true} loop />
+            </>
+            )}
             
             <div className="info">
                 <span className="film-title">{content.title}</span>
@@ -72,28 +87,31 @@ const Featured = ({type, setGenre}) => {
                 <span className="rated">{content.genre} <b>+{content.ageLimit}</b></span>
                 {isClicked ? 
                 <div className="more">
-                    <span>Directed By {content.director}</span>
+                    <span>Directed By {content.director}</span> 
                     <span>{content.year}</span>
                     <span>{content.duration}</span>
                     <Link to={`/content/${content._id}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}>
                         <span className='somemore'>more...</span>
                     </Link>
-                </div>
+                 </div>
                 : null}
-                <div className="buttons">
+                 <div className="buttons">
                     <button className="play">
                     <Link to={`/content/watch/${video}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}>
                         <span>Watch Now</span>
                     </Link>
                     </button>
-                    <button className="more-info" onClick={handleClick} >
-                    
+                    <button className="more-info" onMouseEnter={()=> setIsClicked(true)} onClick={()=> setIsClicked(false)}>
+
                         <InfoOutlined />
                         <span style={{marginLeft: '5px'}}>Info</span>
                     </button>
-                </div>
+                </div> 
             </div>
+            
         </div>
+        
+  
     )
 }
 

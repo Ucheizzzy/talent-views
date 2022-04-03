@@ -1,44 +1,34 @@
 import ContentlistItem from './Contentlistitem'
 // import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons'
 import '../css/contentlist.modules.css'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
-import HorizontalScroll from 'react-scroll-horizontal'
+// import HorizontalScroll from 'react-scroll-horizontal'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Contentlist = () => {
-    const history = useHistory();
+    const history = useNavigate();
 
     const [featured, setFeatured] = useState([])
 
     useEffect(() => {
         const getFeatured = async () => {
-            const res = await axios.get('/movies/featured', {
+            const {data}= await axios.get('/movies/featured', {
                 headers: {
-                    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
+                    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
                 }
                 
             })
-            console.log(res.data)
-            setFeatured(res.data)
+            setFeatured(data)
         }
         getFeatured()
-
-        const unlisten = history.listen(() => {
-            window.scrollTo(0, 0);
-          });
-          return () => {
-            unlisten();
-          }
-    }, [])
+    }, [history])
 
 
     // const [slideNumber, setSlideNumber] = useState(0);
     // const [isMoved, setIsMoved] = useState(false);
-
-    const listRef = useRef()
 
     // const handleClick = (direction) => {
     //     setIsMoved(true)
@@ -54,11 +44,11 @@ const Contentlist = () => {
     // }
     return (
         <div className='content-list'>
-            <span className="listTitle">Recommended</span>
+            <span className="contentlistTitle">Recommended Films</span>
             <div className="content-wrapper" >
-                <div className="content-container" ref={listRef} >
+                <div className="content-container" >
                     {featured.map((card) => (
-                        <Link to={`/content/${card._id}`} style={{textDecoration: 'none'}} >
+                        <Link to={`/content/${card._id}`} key={card._id} style={{textDecoration: 'none'}} >
                             <ContentlistItem card={card} />
                         </Link>
                     ))}

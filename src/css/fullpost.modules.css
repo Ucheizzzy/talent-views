@@ -1,0 +1,170 @@
+.fullpost-container {
+    /* background-color: black;
+    padding: 100px 100px; */
+    /* height: 100vh; */
+} 
+
+.fullpost {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 600px;
+    margin: 0px auto;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+.fullpost-img-container {
+    width: 60%;
+    height: 100%;
+}
+
+.fullpost-img {
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    object-fit: contain;
+    background-color: black;
+}
+
+.fullpost-engagement-container {
+    width: 40%;
+    height: 600px;
+    background-color: black;
+    border-top-right-radius: 15px;
+    border-left: 1px solid white;
+    border-bottom-right-radius: 15px;
+}
+
+.fullpost-top {
+    border-bottom: 1px solid lightgrey;
+    width: 100%;
+}
+
+.person-info {
+    display: flex;
+    align-items: center;
+    margin: 20px 20px;
+    justify-content: space-between;
+    color: black;
+}
+
+.person-info-left {
+    display: flex;
+    align-items: center;
+}
+
+.person-info-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.person-info-name {
+    font-weight: 400;
+    font-size: 15px;
+    color: white;
+}
+
+.person-info-img {
+    width: 40px;
+    object-fit: cover;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.fullpost-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.fullpost-engagement {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    color: white;
+}
+
+.fullpost-caption-container {
+    margin: 20px 0;
+}
+
+.fullpost-caption {
+    display: flex;
+    padding: 10px 20px;
+    color: white;
+}
+
+.fullpost-time {
+    font-size: 13px;
+    color: grey;
+    display: flex;
+    padding: 10px 20px;
+}
+
+.fullpost-social {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.fullpost-social:hover {
+    cursor: pointer;
+}
+
+.likes {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.upvotes {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.fullpost-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 950px){
+    .fullpost-container {
+        display: none;
+    }
+    .fullpost{
+        display: none;
+        flex-direction: column;
+        width: 80%;
+    }
+    .fullpost-img-container {
+        width: 100%;
+    }
+    .fullpost-engagement-container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .person-info{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .person-info-left {
+        margin: 10px 0;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    .fullpost-engagement {
+        display: flex;
+        flex-direction: column;
+    }
+}
+

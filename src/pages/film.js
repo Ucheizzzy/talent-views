@@ -11,9 +11,6 @@ const Film = () => {
         <div className='film-container'>
             
             <ContentDescription />
-            {/* <div className="recommended-container"> */}
-                {/* <List  /> */}
-            {/* </div> */}
            
         </div>
     )

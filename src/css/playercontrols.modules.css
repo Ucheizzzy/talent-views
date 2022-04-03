@@ -1,0 +1,25 @@
+.controlIcons{
+    color:#777;
+    /* font-size: 9.5em; */
+    transform: scale(0.9);
+    transition: ease-in-out 0.3s;
+}
+
+.controlIcons:hover{
+    color:#fff;
+    transform: scale(1);
+    transition: ease-in-out 0.3s;
+}
+
+.bottomIcons{
+    color: #999;
+}
+
+.bottomIcons:hover{
+    color: white;
+    
+}
+
+.volumeSlider {
+    width: 100%;
+}

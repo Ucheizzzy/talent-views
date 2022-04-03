@@ -7,6 +7,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
     opacity: 0.6;
     background: linear-gradient(
         to bottom,
@@ -14,6 +15,15 @@
         rgba(0, 0, 0, 1) 100%
     );
 }
+
+.featured-image-2 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0px;
+    object-fit: cover;
+    background: linear-gradient( to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100% );
+} 
 
 .info {
     width: 90%;
@@ -30,11 +40,8 @@
     font-weight: 800;
 }
 
-.film-desc-title {
-    font-size: 100px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 14px;
+.description {
+    width: 250px;
 }
 
 .info > .description {
@@ -163,13 +170,47 @@
 
 @media screen and (max-width: 480px) {
     .info > .film-title {
-        font-size: 50px;
+        font-size: 30px;
     }
     .info > .description {
-        width: 300px;
+        width: 250px;
+    }
+    .info {
+        width: 70%;
+        left: 30;
     }
 }
 
-@media screen and (max-width: 769px) {
-
+@media screen and (max-width: 650px) {
+    .info{
+        left: 60px;
+    }
 }
+@media screen and (max-width: 899px) {
+    .description {
+        font-size: 15px;
+
+    }
+}
+
+
+@media only screen and (min-width: 470px) and (max-width: 700px){
+    .info > .film-title {
+        font-size: 50px;
+    }
+    .description {
+        width: 250px;
+    }
+}
+
+
+
+@media only screen and (min-width: 700px) and (max-width: 1000px){
+    .info > .film-title {
+        font-size: 80px;
+    }
+    .description {
+        width: 250px;
+    }
+}
+

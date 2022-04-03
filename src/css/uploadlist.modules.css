@@ -1,0 +1,61 @@
+.upload-list{
+    /* width: 100%; */
+    margin-top: 30px;
+}
+
+.uploadlistTitle {
+    /* background-color: #ff7e00; */
+    padding: 5px 15px;
+    color: #fff; 
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 50px;
+}
+
+.upload-container {
+    /* margin-left: 50px; */
+    display: flex;
+    position: relative;
+    margin-top: 10px;
+    padding: 30px;
+    width: max-content;
+    transform: translateX(0px);
+    transition: all 1s ease;
+    overflow-x: auto; 
+} 
+
+
+
+.upload-wrapper {
+    position: relative;
+    overflow-x: scroll;
+}
+
+.upload-wrapper::-webkit-scrollbar {
+    width: 0;
+}
+
+/* .wrapper > .sliderArrow {
+    width: 50px;
+    height: 100%;
+    background-color: rgb(255,255,255, 0.8);
+    color: orange;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+} */
+
+/* .scroll {
+    overflow: scroll;
+} */
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}

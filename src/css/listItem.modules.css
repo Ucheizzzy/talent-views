@@ -1,23 +1,36 @@
 .list-item-container{
-    /* position: fixed; */
+    height: 140px;
 }
 
-.listItem {
-    width: 225px;
-    height: 120px;
-    background-color: black;
-    color: #fff;
-    margin-right: 15px;
-    cursor: pointer;
-    z-index: 999;
-    transition: 0.1s;
-}
-
-.listItem > img {
+.list-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     /* transition: 0.3s; */
+}
+
+.list-image-two {
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute;
+    right: 0px;
+    object-fit: cover;
+    transition: 0.3s; */
+}
+
+.listItem {
+    width: 225px;
+    height: 140px;
+    background-color: black;
+    color: #fff;
+    margin-left: 15px;
+    /* position: relative; */
+    /* cursor: pointer; */
+    /* z-index: 1; */
+    /* transition: 0.1s; */
 }
  
 .listItem:hover {
@@ -25,6 +38,7 @@
     /* height: 300px; */
     position: absolute;
     top: -180px;
+    /* z-index: 999; */
     transition: 0.1s; 
 }
 
@@ -39,20 +53,17 @@
     object-fit: cover;
     position: absolute;
     left: 0;
+    /* z-index: 1; */
 }
 
 .itemInfo {
-    height: 160px;
-    display: flex;
-    flex-direction: column;
+    height: 170px;
+    /* display: flex; */
+    /* flex-direction: column; */
     padding: 5px;
     background-color: black;
 }
 
-.itemIcons {
-    display: flex;
-    margin-bottom: 10px;
-}
 
 .itemIcon {
     border: 2px solid white;
@@ -92,9 +103,11 @@
     margin: 0 10px;
 }
 
-.caption {
-    font-size: 13px;
-    margin-bottom: 10px; 
+.list-item-caption {
+    display: flex;
+    font-size: 15px;
+    /* margin-bottom: 10px;  */
+    margin: 7px 0;
 }
 
 .genre {

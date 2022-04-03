@@ -1,92 +1,78 @@
 import axios from 'axios'
-import { useEffect, useRef, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { 
+    useEffect, 
+    useRef, 
+    useState 
+} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import '../css/register.modules.css'
 
 const Register = () => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [username, setUserName] = useState('')
-    const [surname, setSurname] = useState(null)
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [submitted, setSubmitted] = useState(false)
-    const [submitted2, setSubmitted2] = useState(false)
+    // const [submitted2, setSubmitted2] = useState(false)
     const [random, setRandom] = useState([])
 
+    const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
-    const usernameRef = useRef();
-    const surnameRef = useRef();
+    const phoneNumberRef = useRef();
     const confirmPasswordRef = useRef();
-    const history = useHistory()
+    const history = useNavigate()
 
-    const handleStart = () => {
-        if (
-            usernameRef.current.value && 
-            surnameRef.current.value && 
-            emailRef.current.value
-            ){
-            setEmail(emailRef.current.value)
-            setUserName(usernameRef.current.value)  
-            setSurname(surnameRef.current.value) 
-            
-        }
-        setSubmitted(true)
-             
-            
-
-            if (emailRef.current.value.includes('@')){
-                console.log(true)
-            } else {
-            console.log(false)
-        }
-
-            console.log(usernameRef.current.value, surnameRef.current.value, emailRef.current.value)
-        
-    }
-    
 
     const handleFinish = async(e) => {
         e.preventDefault()
 
         if (
+            phoneNumberRef.current.value && 
+            emailRef.current.value &&
+            nameRef.current.value &&
             passwordRef.current.value  &&
             confirmPasswordRef.current.value  &&
             confirmPasswordRef.current.value  === passwordRef.current.value
 
             ) {
+                setName(nameRef.current.value)
+                setEmail(emailRef.current.value)
+                setPhoneNumber(phoneNumberRef.current.value) 
                 setPassword(passwordRef.current.value)
                 setConfirmPassword(confirmPasswordRef.current.value)
             }
-            setSubmitted2(true);
+            setSubmitted(true);
             
         
         const user = {
-            username: username,
-            surname: surname,
-            email: email,
+            username: nameRef.current.value,
+            phoneNumber: phoneNumberRef.current.value,
+            email: emailRef.current.value,
             password: passwordRef.current.value,
             confirmPassword: confirmPasswordRef.current.value
         }
        
         try {
-            await axios.post('auth/register', user, {email}, {surname}, {username} )
-            history.push('/signin')
+            await axios.post('auth/register', user)
+            // history.push('/signin')
+            history('/success')
         } catch (err) {
             console.log(err.message)
         }
-        console.log(password, username, email, confirmPassword)
+        // console.log(password, phoneNumber, email, confirmPassword)
     }
 
     useEffect(() => {
         const getRandom = async () => {
             const res = await axios.get('/movies/random', {
                 headers: {
-                    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
+                    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
                 }
             })
             setRandom(res.data[0].image[0])
-            console.log(res.data[0])
+            console.log(res.data)
         }
         getRandom()
     }, [])
@@ -94,15 +80,17 @@ const Register = () => {
 
     
     return (
-        <div className='login' style={{backgroundImage: `url(${random})`}}>
-            <div className="top-container">
+        <div className='login' 
+        style={{backgroundImage: `url(${random.image})` }}
+        >
+            <div className="my-top-container">
             
                 <div className="my-logo">
                     <span>talentcroft</span>
                 </div>
-                <div className="signin-button">
+                <div className="my-signin-button">
                     <Link to='/signin'>
-                    <button className="button">
+                    <button className="my-button">
                         Sign in
                     </button>
                     </Link>
@@ -118,55 +106,69 @@ const Register = () => {
                 <p className="warning">Please input your username or password</p>
               ) : null} */}
             
-                { !email ? (
+                {/* { !email ? ( */}
+                    <div>
+                    { submitted && 
+                        !emailRef.current.value.includes("@")? 
+                        (<p
+                        style={{
+                            color: 'red',
+                        }}>Please input the correct email and try again!</p>) : null}
+
+</div>
                     <div className='log-login-form'>
-                        { submitted &&
-                        !emailRef.current.value.includes('@') ?
-                    (<input type="email"
+                        {submitted && !nameRef.current.value ? (
+                            <input 
+                            type="text"
+                            required
+                            placeholder="Please input your username" 
+                            autoComplete="false" 
+                            className="log-login-input" 
+                            ref={nameRef} />
+                        ) : (
+                            <input 
+                            type="text"
+                            required
+                            placeholder="Your username" 
+                            autoComplete="false" 
+                            className="log-login-input" 
+                            ref={nameRef} />
+                        )}
+
+                        { submitted && !emailRef.current.value ? 
+                    (<input 
+                    type="email"
                     required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     placeholder="Please input your email" 
                     autoComplete="false" 
                     className="log-login-input" 
                     ref={emailRef} />) :
-                (<input type="email"
+                (<input 
+                type="email"
                 required
-                placeholder="Your Email" 
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                placeholder="Your email" 
                 autoComplete="false" 
                 className="log-login-input" 
                 ref={emailRef} />)}
-                        
+
 
                         { submitted && 
-                        !usernameRef.current.value ?
-                    (<input type="input" name='username' placeholder="Please input your Name" autoComplete="false" className="log-login-input" ref={usernameRef} />) : 
-                    (<input type="input" name='username' placeholder="Your Name" autoComplete="false" className="log-login-input" ref={usernameRef} />)}
+                        !phoneNumberRef.current.value ?
+                    (<input type="input" name='number' placeholder="Please input your phone number" autoComplete="false" className="log-login-input" ref={phoneNumberRef} />) : 
+                    (<input type="input" name='number' placeholder="Your phone number" autoComplete="false" className="log-login-input" ref={phoneNumberRef} />)}
 
-                        { submitted && 
-                        !surnameRef.current.value ?
-                    (<input type="input" name='surname' placeholder="Please input your Last Name" autoComplete="false" className="log-login-input" ref={surnameRef} />) : 
-                    (<input type="input" name='surname' placeholder="Your Last Name" autoComplete="false" className="log-login-input" ref={surnameRef} />)}
-                        
-                        <button className="login-button" onClick={handleStart}>Join Us!</button>
-                    </div>
-                ) : (
-                    <>
-                    <form className='log-login-form'>
-                        <input type="password" name='password' placeholder="Password" autoComplete="false" className="log-login-input" ref={passwordRef} />
+                        {submitted && !passwordRef.current.value ? 
+                        (<input type="password" name="password" placeholder="Please input your password" autoComplete="false" className="log-login-input" ref={passwordRef} />) :
+                        submitted && confirmPasswordRef.current.value !== passwordRef.current.value ? 
+                        (<input type="text" name="password" value="Input the correct password" autoComplete="false" className="log-login-input" ref={passwordRef} />) :
+                        (<input type="password" name="password" placeholder="Your password" autoComplete="false" className="log-login-input" ref={passwordRef} />)}
+
                         <input type="password" name='confirmPassword' placeholder="confirm Password" autoComplete="false" className="log-login-input" ref={confirmPasswordRef} />
-
-                        <button className="login-button"  onClick={handleFinish}>Let's Begin</button>
-                    </form>
-                    <div>
-                    { submitted2 && 
-                        confirmPasswordRef.current.value !== passwordRef.current.value ? 
-                        (<span
-                        style={{
-                            color: '#fff',
-                        }}>Please input the correct Password!!!</span>) : null}
-
+                        
+                        <button className="logins-button" onClick={handleFinish}>Join Us!</button>
                     </div>
-                    </>
-                )}
                 </div>
         </div>
     )

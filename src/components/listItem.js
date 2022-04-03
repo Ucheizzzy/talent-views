@@ -1,66 +1,112 @@
 // import { Add, PlayArrowOutlined, ThumbDownAltOutlined, ThumbUpAltOutlined } from '@material-ui/icons'
 import axios from 'axios'
-import { useEffect, useState } from 'react' 
+import { useEffect, useState, useLayoutEffect } from 'react' 
 import { Link } from 'react-router-dom'
 import '../css/listItem.modules.css'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const ListItem = ({index, item}) => {
 
-    const history = useHistory()
+    const history = useNavigate()
 
     const [isHovered, setIsHovered] = useState(false)
     const [movie, setMovie] = useState({})
     const [video, setVideo] = useState({})
-    const [caption, setCaption] = useState({})
+    const [caption, setCaption] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+
 
     useEffect(() => {
         
-        const getMovie = async () => {
+        const getVideo = async () => {
 
             try {
-                const res = await axios.get('movies/find/'+ item, {
+                const { data } = await axios.get('movies/find/'+ item, {
                     headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTRjOTQyZDI3MjU2MDQ3NjMwOTE1MiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAyOTU1NCwiZXhwIjoxNjQwNjIxNTU0fQ.UurNPJlSNfewvVi97lKZjhmf7Ngp_arB3AyDvYYZbk8'
+                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
                     }
                 })
-                // console.log(res.data)
-                setCaption(res.data)
-                setMovie(res.data.image[0])
-                setVideo(res.data.content[0].video[0])
+                setCaption(data)
+                // window.scrollTo(0, 0);
             } catch (err) {
                 console.log(err)
             }
         }
-        getMovie()
+        getVideo()
+    }, [item, history])
+
+
+    useEffect(() => {
         
-        // render top of the page after link is clicked
+        const getImage = async () => {
 
-        const unlisten = history.listen(() => {
-            window.scrollTo(0, 0);
-          });
-          return () => {
-            unlisten();
-          }
-    }, [item])
+            try {
+                const { data } = await axios.get('movies/find/'+ item, {
+                    headers: {
+                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1n'
+                    }
+                })
+                setIsLoading(false)
+                setMovie(data.thumbnail[0].thumbnail)
 
-    // console.log(video)
+            } catch (err) {
+                console.log(err.message)
+                setIsLoading(false)
+            }
+        }
+        getImage()
+    }, [item, history])
+
+
+
+    useEffect(() => {
+        
+        const getCaption = async () => {
+
+            try {
+                const { data } = await axios.get('movies/find/'+ item, {
+                    headers: {
+                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+                    }
+                })
+                
+                setVideo(data.trailer[0].trailer)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getCaption()
+    }, [item, history])
 
     return (
         <Link to={`/content/${caption._id}`}>
         <div className="list-item-container">
         <div className='listItem'
-        style={{left: isHovered && index * 225 -50 + index * 7}}
+        style={{left: isHovered && index * 225 -50 + index * 15}}
         onMouseEnter={()=> setIsHovered(true)} 
         onMouseLeave={()=> setIsHovered(false)}
         >
-            <img 
-            src={movie}
-            alt="" />
+
+            
+
+            {
+                isLoading ? (
+                    <img
+                    className='list-image-two' 
+                    src='./loading.gif'
+                    // style={{position: 'relative', right: '0px', width: '100%', height: '100%'}}       
+                    alt="" />
+                    ) : (
+                        <img className="list-image"
+                        src={movie} 
+                        alt="" />
+                    )
+            }
+
             {isHovered && (
             < >
             <video className="listVideo" src={video} autoPlay={true} loop />
-            {/* {movie.video[0]} */}
             <div className="itemInfo">
                 <div className="itemIcons">
                     {/* <PlayArrowOutlined style={{fontSize: '15px'}} className="itemIcon"/>
@@ -71,15 +117,18 @@ const ListItem = ({index, item}) => {
                         <span className="now">{caption.title}</span>
                     </span>
                 </div>
-                <div className="itemInfoTop">
+                {/* <div className="itemInfoTop"> */}
+                <div className="item-desc">
                     <span>{caption.duration}</span>
                     <span className="limit">+{caption.ageLimit}</span>
                     <span>{caption.year}</span>
                 </div>
-                <div className="caption">{caption.description} 
+                    <div className="list-item-caption">{caption.description} 
                 </div>
                 <div className="genre">{caption.genre}</div>
-            </div>
+                </div>
+                
+            {/* </div> */}
             </>
              )}
         </div>
