@@ -7,6 +7,10 @@ import { useState } from 'react'
 // import React, { useState, useEffect } from 'react' 
 import { Link } from 'react-router-dom'
 import '../css/featured.modules.css'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+// import 'react-lazy-load-image-component/src/effects/blur.css'
+import 'react-lazy-load-image-component/src/effects/opacity.css'
+// import 'react-lazy-load-image-component/src/effects/black-and-white.css'
 
 const Featured = ({type, setGenre}) => {
 
@@ -67,7 +71,8 @@ const Featured = ({type, setGenre}) => {
             )}
 
     {!isHovered ? (
-            <img 
+            <LazyLoadImage
+            effect="opacity" 
             height='100%'
             width='100%'
             className='featured-image'

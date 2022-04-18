@@ -40,25 +40,29 @@ const Dashboard = () => {
         <div className="side-bar">
                 <div className="side-content-container">
                     <Link to={`/profile/${user._id}`}>
-                        <div className="side-log-o" style={{textDecoration: 'none', color: 'white', margin: '20px 0'}}>
-                            <Home className='comp'/> Me
+                        <div className="side-log-o" style={{textDecoration: 'none', color: '#ff7e00', margin: '20px 0'}}>
+                            <Home className='comp'/> 
+                            <span className='top-wordss'>Me</span>
                         </div>
                     </Link>
                     <Link to="/community">
-                        <div className="side-log-o" style={{textDecoration: 'none', color: 'white', margin: '20px 0'}}>
-                            <LocationOn className='comp'/> Community
+                        <div className="side-log-o" style={{textDecoration: 'none', color: '#ff7e00', margin: '20px 0'}}>
+                            <LocationOn className='comp'/> 
+                            <span className='top-wordss'>Community</span>
                         </div>
                     </Link>
                         
-                        <div className="side-log-o" onClick={()=>setShow(true)} style={{textDecoration: 'none', color: 'white', margin: '20px 0'}} >
-                            <Create className='comp' /> Upload Video
+                        <div className="side-log-o" onClick={()=>setShow(true)} style={{textDecoration: 'none', color: '#ff7e00', margin: '20px 0'}} >
+                            <Create className='comp' /> 
+                            <span className='top-wordss'>Upload Video</span>
                         </div>
                         
                         
 
                     {/* <Link to="/community" style={{textDecoration: 'none', color: 'white'}}> */}
-                        <div className="side-log-o" style={{textDecoration: 'none', color: 'white', margin: '20px 0'}}>
-                            <People className='comp'/> Followers
+                        <div className="side-log-o" style={{textDecoration: 'none', color: '#ff7e00', margin: '20px 0'}}>
+                            <People className='comp'/> 
+                            <span className='top-wordss'>Followers</span>
                         </div>
                     {/* </Link> */}
                 </div>

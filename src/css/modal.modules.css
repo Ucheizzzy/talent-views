@@ -4,6 +4,7 @@
     background-color: rgba(0, 0, 0, 0.9);
     position: fixed;
     display: flex;
+    top: 0;
     justify-content: center;
     align-items: center;
     z-index: 2;
@@ -60,16 +61,16 @@
     cursor: pointer;
 }
 
-.des-c {
+.des-cc {
     padding: 15px 20px;
-    width: 460px;
+    width: 90%;
     height: 82px;
     font-family: 'Helvetica Neue';
     border: 1px solid lightgray;
     resize: none;
 }
 
-.modalContainer .body {
+.modalContainer .bodyy {
     /* flex: 50%; */
     margin-top: 50px;
     border-radius: 5px;
@@ -127,4 +128,31 @@
 
 #cancelBtn {
     background-color: violet;
+}
+
+@media screen and (max-width: 600px) {
+    .modalContainer {
+    width: 80%;
+    height: 300px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    }
+
+    .modalContainer .bodyy {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .upload-body{
+        margin: 10px 0;
+    }
+
+    .des-c {
+        width: 80%;
+    }
 }

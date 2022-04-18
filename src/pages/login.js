@@ -26,24 +26,12 @@ const Login = () => {
         e.preventDefault()
 
         if (!email && !password){
-            
             setSubmitted(false)
         }
         setSubmitted(true) 
 
         login({email, password}, dispatch)
        
-        // const user = {
-        //     email: email,
-        //     password: password
-        // }
-        
-        // try {
-        //     await axios.post('auth/login', user)
-        //     // history.push('/')
-        // } catch (err) {
-        //     console.log(err.message)
-        // }
     }
 
 
@@ -111,6 +99,10 @@ const Login = () => {
                             }
                             </div>)
                         }
+
+
+
+
                         
                         <button className="log-button" onClick={handleClick}>Sign In</button>
                     <span className="signup-span">New to talentcroft views? Sign up <Link to='/register' 

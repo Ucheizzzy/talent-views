@@ -8,10 +8,13 @@ import ArrowCircleUpRoundedIcon from '@mui/icons-material/ArrowCircleUpRounded';
 import { ArrowDropDown, DashboardOutlined, LocationOn } from '@material-ui/icons'
 import Navbar from '../components/navbar';
 import { AuthContext } from '../authContext/authContext';
-import Video from '../components/video'
+// import Video from '../components/video'
+import ProfileVideo from '../components/profileVideo'
 import Footer from '../components/footer';
-import PostModal from '../components/postModal'
+import ProfilePostModal from '../components/profilePostModal'
 import ProfileModal from '../components/profileModal'
+import sam from '../images/sam.JPG'
+
 
 
 const Profile = () => {
@@ -20,6 +23,7 @@ const Profile = () => {
     const [video, setVideo] = useState([])
     const [profilePicture, setProfilePicture] = useState([])
     const [hovered, setHovered] = useState(false)
+    const [myPosts, setMyPosts] = useState([])
     const [show, setShow] = useState(false)
     const {id} = useParams()
 
@@ -40,10 +44,17 @@ const Profile = () => {
             window.scrollTo(0, 0);
         }
         getMyVideo()
-    }, [user.email])
+    }, [user])
 
-    console.log(currentUser.email)
-    console.log(user.email)
+    useEffect(()=> {
+        const getmyPost = async () => {
+            const { data } = await axios.get(`/profile/posts/user/${user.email}`)
+            setMyPosts(data)
+            console.log(data)
+        }
+        getmyPost()
+    }, [user])
+
 
     const handleHover = () => {
         if (currentUser.email === user.email) {
@@ -83,7 +94,7 @@ const Profile = () => {
                             />
                             <span className="blur"></span>
                             <span className="blur-words">
-                                Edit
+                              <strong>Edit</strong>
                             </span>
                         </div>
                                 ) : (
@@ -96,9 +107,6 @@ const Profile = () => {
                         </div>
                         <div className="me-profile-names">
                             <span className="me-name">{user.username}</span>
-                            <span className="me-email">
-                                {user.email}
-                                </span>
                         </div>
                     </div>
                     <div className="me-right">
@@ -224,13 +232,13 @@ const Profile = () => {
                         {video.map((video)=> (
                             <Link to={`/profile/${user._id}/${video._id}`}>
                             <div key={video._id} className="me-content-container">
-                                 <Video video={video} />
+                                 <ProfileVideo video={video} />
                             </div>
                             </Link>
                         ))}
                     </div>
                     <Routes >
-                        <Route exact path="/:id" element={<PostModal />}/>
+                        <Route exact path="/:id" element={<ProfilePostModal myPosts={myPosts} />}/>
                     </Routes >
                 </div>
             </div>

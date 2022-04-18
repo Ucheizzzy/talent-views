@@ -102,6 +102,20 @@
         /* margin: 0; */
         width: 100%;
     }
+
+    .community-bar {
+        border-top: 1px solid #808080;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        /* margin: 20px; */
+        height: 60px;
+        position: fixed;
+        bottom: 0;
+        z-index: 999;
+        background: black;
+    }
 }
 
 /* @media only screen and (max-width: 600px){ 

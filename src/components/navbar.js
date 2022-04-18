@@ -16,7 +16,10 @@ import useDebounce from './debounce_hook/useDebounce'
 // import { getUsers } from '../userContext/apiCalls'
 
 
-const Navbar = ({ searchTerm, setSearchTerm, debouncedSearchTerm }) => {
+const Navbar = ({ searchTerm, 
+    // setSearchTerm, 
+    // debouncedSearchTerm 
+}) => {
     const history = useNavigate()
 
     // const params = useParams().id
@@ -64,15 +67,15 @@ const Navbar = ({ searchTerm, setSearchTerm, debouncedSearchTerm }) => {
       history('/register')
   }
 
-  const handleFilter = (event) => {
-    event.preventDefault()
-    // if (debouncedSearch){
-        history(`/search?q=${debouncedSearch}`)
-        // setSearchParams({q: event.target.value})
-        setSearchTerm(event.target.value);
-    // }
+//   const handleFilter = (event) => {
+//     event.preventDefault()
+//     // if (debouncedSearch){
+//         history(`/search?q=${debouncedSearch}`)
+//         // setSearchParams({q: event.target.value})
+//         setSearchTerm(event.target.value);
+//     // }
     
-}
+// }
   
 
     return (
@@ -97,9 +100,9 @@ const Navbar = ({ searchTerm, setSearchTerm, debouncedSearchTerm }) => {
                         <Link to='/movies' style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}} className='mennu'>
                         <p>Movies</p>
                         </Link>
-                        {/* <Link to='/search' style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}} className='mennu'>
+                        <Link to='/search' style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}} className='mennu'>
                         <p>Search</p>
-                        </Link> */}
+                        </Link>
                         <p style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}}>Popular</p>
                         <Link to='/community' style={{textDecoration: 'none', color: 'white', marginRight: '20px'}} className='mennu'>
                         <span>Community</span>
@@ -107,11 +110,11 @@ const Navbar = ({ searchTerm, setSearchTerm, debouncedSearchTerm }) => {
                         {/* <SearchBar style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}} className='search-bar' placeholder='Search for a show, movie, genre, etc.' 
                         data={movie}
                         /> */}
-                        <div className="search">
+                        {/* <div className="search">
                             <input className="searchs-input" type="text" name="" placeholder="Search Movies, Directors, Descriptions." id=""
                             onChange={handleFilter}
                               />
-                        </div>
+                        </div> */}
                         </div>
                         </div>
                     {/* ) : (null)} */}
@@ -126,9 +129,9 @@ const Navbar = ({ searchTerm, setSearchTerm, debouncedSearchTerm }) => {
                     <Link to='/movies' style={{textDecoration: 'none', color: 'white', marginRight: '20px'}} className='mennu'>
                         <span>Movies</span>
                     </Link>
-                    {/* <Link to='/search' style={{textDecoration: 'none', color: 'white', marginRight: '20px'}} className='mennu'>
+                    <Link to='/search' style={{textDecoration: 'none', color: 'white', marginRight: '20px'}} className='mennu'>
                         <p>Search</p>
-                    </Link> */}
+                    </Link>
                         <span style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginRight: '20px'}}>Popular</span>
                     <Link to='/community' style={{textDecoration: 'none', color: 'white', marginRight: '20px'}} className='mennu'>
                         <span>Community</span>
@@ -139,11 +142,11 @@ const Navbar = ({ searchTerm, setSearchTerm, debouncedSearchTerm }) => {
                     {/* <SearchBar className='search-bar' placeholder='Search for a show, movie, genre, etc.' 
                     data={movie}
                     /> */}
-                    <div className="search">
+                    {/* <div className="search">
                         <input className="searchs-input" type="text" name="" placeholder="Search Movies, Directors, Descriptions." id=""  
                         onChange={handleFilter} 
                         />
-                    </div>
+                    </div> */}
                 </div>
                 <div className="nav-right mennu" >
                     <Link to={`/profile/${user._id}`} style={{textDecoration: 'none', color: 'white'}}>

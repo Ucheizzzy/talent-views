@@ -11,6 +11,8 @@ import '../css/featured.modules.css'
 import Navbar from './navbar'
 import Contentlist from './contentlist'
 import {useParams} from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/opacity.css'
 
 
  
@@ -65,7 +67,9 @@ const [image, setImage] = useState('')
         <>
         <Navbar />
         <div className='featured' >
-             <img className='featured-jumbotron'
+             <LazyLoadImage
+             effect="opacity" 
+             className='featured-jumbotron'
             //  style={{position: "fixed"}}
             // height='100%'
             src={image.image}

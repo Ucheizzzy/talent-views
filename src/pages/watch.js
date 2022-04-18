@@ -102,7 +102,7 @@ const Watch = () => {
         }
 
         if (!state.playing) {
-            controlsRef.current.style.visibility = 'hidden';
+            controlsRef.current.style.visibility = 'visible';
             setShowDetails(true)
         }
 
@@ -160,13 +160,13 @@ const Watch = () => {
     useEffect(() => {
         const getContent = async () => {
             try {
-                const res = await axios.get(`/content/find/${params.id}`, {
+                const { data } = await axios.get(`/content/find/${params.id}`, {
                     headers: {
                         token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
                     }
                 })
-                setFilm(res.data)
-                setVideo(res.data.videoHD[0])
+                setFilm(data)
+                setVideo(data.videoHD[0])
             } catch (err) {
                 console.log(err)
             }
@@ -227,7 +227,7 @@ const Watch = () => {
             onProgress={handleProgress}
             width='100%'
             height='100%'
-            style={{position: 'absolute', top: '0', left: '0', backgroundColor: 'black'}}
+            // style={{position: 'absolute', top: '0', left: '0', backgroundColor: 'black'}}
             />
 
             <div className="overlay">

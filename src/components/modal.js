@@ -55,9 +55,9 @@ const Modal = ({closeModal}) => {
                 <button onClick={() => closeModal(false)}> X </button>
                 </div>
                 <div className="modTitle">
-                    <textarea className="des-c" type="text" name="description" placeholder={"What's going on "+user.username + " ?"} onChange={handleChange}></textarea>
+                    <textarea className="des-cc" type="text" name="description" placeholder={"What's going on "+user.username + " ?"} onChange={handleChange}></textarea>
                 </div>
-                <div className="body" >
+                <div className="bodyy" >
                     <div className="upload-body">
                         <input type="button" value="Choose Video" className="upload" />
                         <input type="file" id='video' name="video" className='videoplayer' accept="video/mp4" onChange={(e)=>{

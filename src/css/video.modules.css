@@ -1,10 +1,42 @@
 .post-imag-e{
     border: 1px solid #ffffff38;
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     height: 350px;
     width: 250px;
     border-radius: 5px;
+    position: relative;
+}
+
+.imagey-container {
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+}
+
+.imagey-image {
+    object-fit: cover;
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    border: 1px solid white;
+    margin-right: 5px;
+}
+
+.imagey-user {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.imagey-words {
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 3px rgb(5, 5, 5);
 }
 
 .post-imager-y{

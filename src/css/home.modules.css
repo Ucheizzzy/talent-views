@@ -1,6 +1,7 @@
  .App {
      background-color: #000;
      overflow: hidden;
+     margin-bottom: 100px;
  }
 
  .h1 {

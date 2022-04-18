@@ -38,24 +38,6 @@ const Dashboard = ({video}) => {
                             </span>
 
                         </div>
-                        {/* <div className="interactions">
-                            <div className="interactive-icons">
-                                {
-                                    !click ? (
-                                        <FavoriteBorder style={{fontSize:"25px"}} onClick={(e)=> setClick(true)}/>
-                                    ) : (
-                                        <Favorite style={{fontSize:"25px", color: 'red'}} onClick={(e)=> setClick(false)}/>
-                                    )
-                                }
-                                
-                            </div>
-                            <div className="interactive-icons">
-                                <Share style={{fontSize:"25px"}}/>
-                            </div>
-                            <div className="interactive-icons">
-                                <ChatBubble style={{fontSize:"25px"}}/>
-                            </div>
-                        </div> */}
                     </div>
                     
                 </div>

@@ -15,15 +15,14 @@ import { useLocation } from "react-router-dom"
 
 
 
-const PostModal = ({closeModal,
-     posts
+const ProfilePostModal = ({closeModal,
+  myPosts
     }) => {
-    const location = useLocation()
     const history = useNavigate();
     const {id} = useParams()
     const { user } = useContext(AuthContext)
     const [post, setPost] = useState([])
-
+    // const [myPosts, setMyPosts] = useState([])
 
     useEffect(()=> {
         const getPost = async () => {
@@ -31,7 +30,6 @@ const PostModal = ({closeModal,
             setPost(data.getOnePost)
         }
         getPost()
-        
     }, [id])
 
 
@@ -39,41 +37,36 @@ const backArrow = () => {
   let currentPostId = post;
   let currentPostIndex = 0;
 
-  currentPostIndex = posts.findIndex(
+  currentPostIndex = myPosts.findIndex(
     (postData, index) => postData._id === currentPostId._id
   );
 
 
   if (currentPostIndex > 0) {
     currentPostIndex--;
-    console.log('currentPostIndex', currentPostIndex, post._id);
+    console.log('currentPostIndex', currentPostIndex);
 
-    history(`/community/${post._id}`)
-    setPost(posts[currentPostIndex]);
+    setPost(myPosts[currentPostIndex]);
   }
 };
 
 const forwardArrow = () => {
-  let currentPostId = post._id;
+  let currentPostId = post;
   let currentPostIndex = 0;
 
-  currentPostIndex = posts.findIndex(
+  currentPostIndex = myPosts.findIndex(
     (postData, index) => { 
-      console.log('code can be annoying', postData, postData._id, currentPostId)
-    return postData._id === currentPostId
-    
+    return postData._id === currentPostId._id
 }
   );
 
 
 
-  if (currentPostIndex < posts.length - 1) {
-    currentPostIndex = currentPostIndex + 1;
-    console.log('currentPostIndex', currentPostIndex, currentPostId);
+  if (currentPostIndex < myPosts.length - 1) {
+    currentPostIndex++;
+    console.log('currentPostIndex', currentPostIndex);
 
-    history(`/community/${post._id}`)
-    setPost(posts[currentPostIndex]);
-    
+    setPost(myPosts[currentPostIndex]);
   }
 };
 
@@ -107,4 +100,4 @@ const forwardArrow = () => {
     </div>
     </>)
 }
-export default PostModal
+export default ProfilePostModal

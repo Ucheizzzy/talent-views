@@ -34,7 +34,7 @@
 }
 
 .post-header {
-    background-color: #fff;
+    background-color: black;
     justify-content: space-between;
     align-items: center;
     display: flex;
@@ -72,7 +72,7 @@
 .post-info-name {
     font-weight: 600;
     margin-left: 10px;
-    color: black;
+    color: white;
     transition: 0.4s;
 }
 
@@ -107,6 +107,7 @@
 .post-image {
     display: flex;
     width: 100%;
+    border-bottom: 0.5px solid #808080;
 }
 
 .post-container {
@@ -114,13 +115,14 @@
 }
 
 .post-footer {
-    background-color: #fff;
+    background-color: black;
     display: flex;
     height: 180px;
 }
 
 .post-footer-caption{
     margin: 10px 20px;
+    color: white;
 }
 
 .interactions {

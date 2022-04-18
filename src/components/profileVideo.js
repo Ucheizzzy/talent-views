@@ -10,7 +10,7 @@ import axios from 'axios'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 // import film from '../images/gif.gif'
 
-const Video = ({video}) => {
+const ProfileVideo = ({video}) => {
 
     const [hover, setHover] = useState(false)
     const [click, setClick] = useState(false)
@@ -80,10 +80,17 @@ const handleUpvote = async () => {
                     >
                         <div className="post-imag-e">
                             {!hover ? (
-                                <>
+                                <div className="imagey-container">
+                                <video className="post-imager-y" 
+                                src={video.video[0]?.video} 
+                                alt="new" 
+                                type="video/mp4" 
+                                muted
+                                // poster={film}
+                                />
                                 <div className="imagey-user">
-                                <img src={video._creator.profilePicture[0]?.profilePicture} alt="" className="imagey-image" />    
-                                <span className="imagey-words">{video._creator?.username}</span>
+                                    {/* <img src={video._creator.profilePicture[0]?.profilePicture} alt="" className="imagey-image" />     */}
+                                    {/* <span className="imagey-words">{video._creator?.username}</span> */}
                                 </div>
                                 <PlayArrowIcon 
                                     style={{
@@ -93,23 +100,19 @@ const handleUpvote = async () => {
                                         color: 'white'
                                     }}
                                     />
+                                </div>
+                            ) : (
                                 <div className="imagey-container">
                                 <video className="post-imager-y" 
                                 src={video.video[0]?.video} 
                                 alt="new" 
                                 type="video/mp4" 
-                                muted
-                                // poster={film}
+                                controls
                                 />
-                                
-                                </div>
-                                </>
-                            ) : (
-                                <>
                                 <div className="imagey-user">
-                                <img src={video._creator?.profilePicture[0].profilePicture} alt="" className="imagey-image" />
-                                <span className="imagey-words">{video._creator?.username}</span>
-                                </div> 
+                                {/* <img src={video._creator?.profilePicture[0].profilePicture} alt="" className="imagey-image" /> */}
+                                {/* <span className="imagey-words">{video._creator?.username}</span> */}
+                                </div>   
                                 <PlayArrowIcon 
                                     style={{
                                         position: 'absolute',
@@ -117,17 +120,8 @@ const handleUpvote = async () => {
                                         top: '10',
                                         color: 'white'
                                     }}
-                                    />  
-                                <div className="imagey-container">
-                                <video className="post-imager-y" 
-                                src={video.video[0]?.video} 
-                                alt="new" 
-                                type="video/mp4" 
-                                controls
-                                />  
-                                                           
+                                    />                             
                                 </div>
-                                </>
                             )}
                             {!hover ? (
                             <div style={{display: 'none'}}>
@@ -201,5 +195,5 @@ const handleUpvote = async () => {
 
 }
 
-export default Video
+export default ProfileVideo
 

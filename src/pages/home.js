@@ -38,7 +38,6 @@ const Home = ({ type }) => {
                 <List list={list}/>
                 </div>
             ))}
-            <Footer />
         </div>
     )
 }

@@ -20,7 +20,7 @@ Modal.setAppElement('#root')
 
 const Community = () => {
 
-    const [post, setPost] = useState([])
+    const [posts, setPosts] = useState([])
     const {user} = useContext(AuthContext)
     // const [show, setShow] = useState(false)
     // const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +28,7 @@ const Community = () => {
     useEffect(()=> {
         const getPosts = async () => {
             const res = await axios.get('/posts')
-            setPost(res.data.data)
+            setPosts(res.data.data)
             console.log(res.data.data)
         }
         getPosts()
@@ -57,7 +57,7 @@ const Community = () => {
             <div className="premium-container" >
                 <div className="video-list" >
                 {
-                post.map((video, index) => (
+                posts.map((video, index) => (
                 <div className="video-link" key={video._id}
                 // onClick={(e)=>setShow(true)} 
                 >
@@ -74,13 +74,12 @@ const Community = () => {
 
 
         <Routes >
-            <Route exact path="/:id" element={<PostModal post={post} />}/>
+            <Route exact path="/:id" element={<PostModal posts={posts} />}/>
         </Routes >
 
             
             
         </div>
-        <Footer />
         </>
     )
 }

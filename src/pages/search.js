@@ -22,13 +22,12 @@ const Search = () => {
         getMovies(dispatch)
     }, [dispatch])
 
-    // const handleFilter = (e) => {
-    //     e.preventDefault()
-    //     history('/search')
-    //     // history(`/search?q=${searchTerm}`)
-    //     setSearchTerm(e.target.value);
+    const handleFilter = (e) => {
+        e.preventDefault()
+        history(`/search?q=${searchTerm}`)
+        setSearchTerm(e.target.value);
         
-    // }
+    }
 
     // useEffect(() => {
     //     const params = new URLSearchParams();
@@ -44,9 +43,9 @@ const Search = () => {
       <>
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <div className="search-background">
-      {/* <div className="search">
+      <div className="search">
         <input className="searchs-input" type="text" name="" placeholder="Search Movies, Directors, Descriptions." id="" onChange={handleFilter} />
-      </div> */}
+      </div>
     <div className='search-container'>
         <div className="search-list-container"
         

@@ -1,6 +1,6 @@
 
 import '../css/fullpost.modules.css'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import axios from 'axios'
 import { ChatBubble, Favorite, ArrowUpwardOutlined, FavoriteBorder, Home, Share, LocationOn } from '@material-ui/icons'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
@@ -9,24 +9,117 @@ import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 import {useParams,Link, useNavigate} from 'react-router-dom'
 import {format} from 'timeago.js'
 import Navbar from './navbar';
+import ReactPlayer from 'react-player'
 import { AuthContext } from '../authContext/authContext';
 import image from '../images/stockphoto.jpeg'
+import PostControl from '../components/postControl'
+
+
+const formated = (seconds) => {
+    if (isNaN(seconds)){
+        return '00:00'
+    }
+    const date = new Date(seconds * 1000)
+    const hh = date.getUTCHours()
+    const mm = date.getUTCMinutes()
+    const ss = date.getUTCSeconds().toString().padStart(2, '0')
+    if (hh){
+        return `${hh}:${mm.toString().padStart(2, '0')}:${ss}`
+    }
+
+    return `${mm}:${ss}`
+}
+
+let count = 0
 
 const Fullpost = ({user, post}) => {
 
+    // console.log(post)
+
+
     const history = useNavigate()
     const [click, setClick] = useState(false)
+    const [show, setShow] = useState(false)
     // const [post, setPost] = useState([])
     const [isHovered, setIsHovered] = useState(false)
     const [isLiked, setIsLiked] = useState(false)
+    const [timeDisplayFormat, setTimeDisplayFormat] = useState('normal')
     const [isUpvoted, setIsUpvoted] = useState(false)
     const [profilePicture, setProfilePicture] = useState('')
     const { user:currentUser, dispatch } = useContext(AuthContext)
-    const [followUser, setFollowUser] = useState(currentUser.following.includes(post._creator?._id))
+    const [followUser, setFollowUser] = useState(currentUser.following?.includes(post._creator?._id))
     const [like, setLike] = useState(post.likes?.length)
     const [upvote, setUpvote] = useState(post.upvotes?.length)
     const [vid, setVid] = useState([])
     const {id} = useParams()
+    const [state, setState] = useState({
+        playing: true,
+        muted: true,
+        volume: 1,
+        playbackRate: 1.0,
+        played: 0,
+        seeking: false,
+    })
+
+    const {playing, muted, volume, playbackRate, played, seeking} = state
+    const playerRef = useRef(null)
+    const playerContainerRef = useRef(null)
+    const controlsRef = useRef(null)
+
+    const handlePlayPause = () => {
+        setState({...state, playing: !state.playing})
+    }
+
+    const handleRewind = () => {
+        playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10)
+    }
+
+    const handleFastForward = () => {
+        playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10)
+    }
+
+    const handleMute = () => {
+        setState({...state, muted: !state.muted})
+    }
+
+    const handleVolumeChange = (e, newValue) => {
+        setState({
+            ...state, 
+            volume: parseFloat(newValue/100), 
+            muted: newValue === 0 ? true:false
+        })
+    }
+
+    const handleChangeDisplayFormat = () => {
+        setTimeDisplayFormat(
+         timeDisplayFormat==='normal'
+        ?'remaining' : 'normal',)
+    }
+
+    const handleVolumeSeekUp = (e, newValue) => {
+        setState({
+            ...state, 
+            volume: parseFloat(newValue/100), 
+            muted: newValue === 0 ? true:false
+        })
+    }
+
+    const handlePlaybackRateChange = (rate) => {
+        setState({...state, playbackRate: rate})
+    }
+    
+
+    const currentTime = playerRef.current 
+    ? playerRef.current.getCurrentTime() 
+    : '00:00';
+    const duration = playerRef.current 
+    ? playerRef.current.getDuration() 
+    : '00:00'; 
+
+    const elapsedTime = timeDisplayFormat==='normal' 
+    ? formated(currentTime) 
+    : `-${formated(duration - currentTime)}`;
+    const totalDuration = formated(duration)
 
     useEffect(() => {
         setIsLiked(post.likes?.includes(currentUser._id))
@@ -38,28 +131,41 @@ const Fullpost = ({user, post}) => {
 
     useEffect(() => {
         const followUser = async () => {
-           const res = await axios.put(`/users/${post._creator?._id}/follow`)
+           const { data } = await axios.put(`/users/${post._creator?._id}/follow`)
            setFollowUser(user.following.includes(user?._id))
         }
         followUser()
     }, [post._creator?._id, user, user?._id])
 
+const newArr = []
+// console.log(newArr, 'new Array------')
+
+console.log(post?.video)
+
     useEffect(() => {
         const getUser = async () => {
-           const res = await axios.get(`/users/find/${post._creator?._id}`)
-           setProfilePicture(res.data.profilePicture[0].profilePicture)
-
+           const { data } = await axios.get(`/users/find/${post._creator?._id}`)
+           setProfilePicture(data.profilePicture[0]?.profilePicture)
+        //    setVid(data._posts[0]?.video[0].video) 
+        
+          data._posts.map((post) => (newArr.push(post.video[0].video)))
+        //   console.log(newArr, 'deji------')
+        //    setVid(...newArr)
+        //    console.log('array', newArr)
+        //    console.log('video', vid)
         }
         getUser()
     }, [post._creator])
 
-    useEffect(()=> {
-        const getVideo = async () => {
-            const res = await axios.get(`/posts/find/${id}`)
-            setVid(res.data.getOnePost.video[0].video)
-        }
-        getVideo()
-    }, [id])
+
+    // useEffect(()=> {
+    //     const getVideo = async () => {
+    //         const { data } = await axios.get(`/posts/find/${id}`)
+    //         setProfilePicture(data.getOnePost?._creator.profilePicture[0].profilePicture)
+    //         setVid(data.getOnePost?.video[0].video)
+    //     }
+    //     getVideo()
+    // }, [id])
 
     const handleFollow = async () => {
         try { 
@@ -144,8 +250,48 @@ return(
         style={{width: '100vw'}}
         >
             <div className="fullpost">
-                <div className="fullpost-img-container">
-                    <video id=""className="fullpost-img" src={vid} alt="new stuff" type="mp4" controls/>
+                <div className="fullpost-img-container"
+                onMouseEnter={()=>setShow(true)}
+                onMouseLeave={()=>setShow(false)}
+                >
+                    {/* <video id=""className="fullpost-img" src={vid} alt="new stuff" type="mp4" controls/> */}
+                    <ReactPlayer
+                    ref={playerRef}
+                    url={newArr} 
+                    playing={playing} 
+                    muted={muted}
+                    volume={volume}
+                    playbackRate={playbackRate}
+                    // onProgress={handleProgress}
+                    width='100%'
+                    height='100%'
+                    />
+
+            {show && (
+                <PostControl
+                // film={film}
+                // ref={controlsRef}
+                onPlayPause={handlePlayPause}
+                playing={playing}
+                onRewind={handleRewind}
+                onFastForward={handleFastForward}
+                muted={muted}
+                onMute={handleMute}
+                onvolumechange={handleVolumeChange}
+                onVolumeSeekUp={handleVolumeSeekUp}
+                volume={volume}
+                playbackRate={playbackRate}
+                onPlaybackRateChange={handlePlaybackRateChange}
+                played={played}
+                // onSeek={handleSeekChange}
+                // onSeekMouseDown={handleSeekMouseDown}
+                // onSeekMouseUp={handleSeekMouseUp}
+                elapsedTime={elapsedTime}
+                totalDuration={totalDuration}
+                onChangeDisplayFormat={handleChangeDisplayFormat}
+                />
+            )}
+
                 </div>
                 <div className="fullpost-engagement-container">
                     <div className="fullpost-top">

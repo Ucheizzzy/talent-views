@@ -15,6 +15,7 @@
 }
 
 .fullpost-img-container {
+    position: relative;
     width: 60%;
     height: 100%;
 }
