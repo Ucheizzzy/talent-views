@@ -4,7 +4,6 @@ import { useEffect, useState, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../css/listItem.modules.css'
 import { useNavigate } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/opacity.css'
 
 const ListItem = ({index, item}) => {
@@ -94,7 +93,7 @@ const ListItem = ({index, item}) => {
 
             {
                 isLoading ? (
-                    <LazyLoadImage
+                    <img
                     effect="opacity"
                     className='list-image-two' 
                     src='./loading.gif'

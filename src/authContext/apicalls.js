@@ -8,6 +8,6 @@ export const login = async (userDetails, dispatch) => {
         const res = await axios.post('auth/login', userDetails)
         dispatch(loginSuccess(res.data))
     } catch (err) {
-        dispatch(loginFailure())
+        dispatch(loginFailure(err.response))
     }
 };

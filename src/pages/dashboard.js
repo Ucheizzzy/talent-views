@@ -7,10 +7,12 @@ import Post from '../components/post'
 import axios from 'axios'
 import Footer from '../components/footer'
 import Modal from '../components/modal'
+import Media from "react-media"
 import { AuthContext } from '../authContext/authContext'
 
 const Dashboard = () => {
 
+    const [stack, setStack] = useState(false)
     const [show, setShow] = useState(false)
     const [post, setPost] = useState([])
     const {user} = useContext(AuthContext)

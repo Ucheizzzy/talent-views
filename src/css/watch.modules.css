@@ -8,6 +8,10 @@
     height: 100%;
 }
 
+.playwrapper {
+    display: contents;
+}
+
 .back {
     display: flex;
     align-items: center;

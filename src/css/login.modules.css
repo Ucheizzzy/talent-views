@@ -106,12 +106,21 @@
     width: -webkit-fill-available;
 }
 
-.log-form > input::-webkit-input-placeholder {
-    color: white;
+.input-password > .red::-webkit-input-placeholder {
+    color: red;
+    opacity: 1;
+    font-weight: 800;
+}
+
+.log-form > .red::-webkit-input-placeholder {
+    color: red;
+    opacity: 1;
+    font-weight: 800;
 }
 
 .input-password > input::-webkit-input-placeholder {
     color: white;
+    opacity: 0.5;
 }
 
 .log-button {
@@ -152,6 +161,7 @@
     border: none;
     color: white;
 }
+
 
 .login-button {
     background-color: black;

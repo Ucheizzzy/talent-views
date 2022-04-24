@@ -104,8 +104,8 @@ const Navbar = ({ searchTerm,
                         <p>Search</p>
                         </Link>
                         <p style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}}>Popular</p>
-                        <Link to='/community' style={{textDecoration: 'none', color: 'white', marginRight: '20px'}} className='mennu'>
-                        <span>Community</span>
+                        <Link to='/community' style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}} className='mennu'>
+                        <p>Community</p>
                         </Link>
                         {/* <SearchBar style={{textDecoration: 'none', color: 'white', padding: '10px 0', marginLeft: '50px'}} className='search-bar' placeholder='Search for a show, movie, genre, etc.' 
                         data={movie}

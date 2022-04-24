@@ -55,13 +55,12 @@ const Register = () => {
         }
        
         try {
-            await axios.post('auth/register', user)
-            // history.push('/signin')
+            const res = await axios.post('auth/register', user)
+            console.log(res)
             history('/success')
         } catch (err) {
             console.log(err.message)
         }
-        // console.log(password, phoneNumber, email, confirmPassword)
     }
 
     useEffect(() => {
@@ -72,7 +71,6 @@ const Register = () => {
                 }
             })
             setRandom(res.data[0].image[0])
-            console.log(res.data)
         }
         getRandom()
     }, [])

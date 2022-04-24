@@ -138,9 +138,9 @@ const Fullpost = ({user, post}) => {
     }, [post._creator?._id, user, user?._id])
 
 const newArr = []
-// console.log(newArr, 'new Array------')
+console.log(newArr, 'new Array------')
 
-console.log(post?.video)
+// console.log(post?.video)
 
     useEffect(() => {
         const getUser = async () => {
@@ -148,14 +148,17 @@ console.log(post?.video)
            setProfilePicture(data.profilePicture[0]?.profilePicture)
         //    setVid(data._posts[0]?.video[0].video) 
         
-          data._posts.map((post) => (newArr.push(post.video[0].video)))
+        //   const full = data._posts.map((post) => (newArr.push(post.video[0].video)))
+        const arr = data._posts.map(v => v.video[0].video)
+        setVid(arr)
+          console.log(arr, '-----------------')
         //   console.log(newArr, 'deji------')
         //    setVid(...newArr)
         //    console.log('array', newArr)
         //    console.log('video', vid)
         }
         getUser()
-    }, [post._creator])
+    }, [post._creator]);
 
 
     // useEffect(()=> {
@@ -257,7 +260,7 @@ return(
                     {/* <video id=""className="fullpost-img" src={vid} alt="new stuff" type="mp4" controls/> */}
                     <ReactPlayer
                     ref={playerRef}
-                    url={newArr} 
+                    url={vid} 
                     playing={playing} 
                     muted={muted}
                     volume={volume}

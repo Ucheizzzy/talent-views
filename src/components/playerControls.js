@@ -127,7 +127,7 @@ const PlayerControls = forwardRef(({
                 
                 </Grid>
 
-                <Media query = '(min-width: 850px)'>
+                <Media query = '(min-width: 857px)'>
                   {
                     matches => {
                       return matches 
@@ -254,7 +254,7 @@ const PlayerControls = forwardRef(({
                         </IconButton>
                     </Grid>
                 </Grid> ) : (
-                  <Grid container direction='row' alignItems='center' justifyContent='center' style={{display: 'flex', marginBottom: '30px'}}>
+                  <Grid container direction='row' alignItems='center' justifyContent='center' style={{display: 'flex', marginBottom: '30px', width: 'auto'}}>
                   <Grid item xs={10}>
                       <PrettoSlider 
                           min={0}
@@ -272,9 +272,9 @@ const PlayerControls = forwardRef(({
                   </Grid>
                   <Grid item style={{display: 'flex'}}>
                           <Button onClick={onChangeDisplayFormat} variant='text' style={{color:'#fff', marginRight: '5px', marginTop: '10px'}}>
-                              <Typography fontSize='10px'> {elapsedTime}/{totalDuration}</Typography>
+                              <Typography style={{fontSize: '10px'}} > {elapsedTime}/{totalDuration}</Typography>
                           </Button>
-                      <Grid container alignItems='center' justifyContent='center' direction='row'>
+                      <Grid container alignItems='center' justifyContent='center' direction='row' style={{width: '50%', margin: '0 auto'}}>
 
                           <Box sx={{ width: 200 }} style={{marginTop: '5px', display: 'flex'}}>
                           {/* <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" > */}
@@ -293,31 +293,6 @@ const PlayerControls = forwardRef(({
 
                       </Grid>
                       
-                  </Grid>
-                  <Grid item>
-                      <Button onClick={handlePopover} variant='text' className='bottomIcons'>
-                          <Typography fontSize='10px'>{playbackRate}x</Typography>
-                      </Button>
-                      <Popover
-                          id={id}
-                          open={open}
-                          anchorEl={anchorEl}
-                          onClose={handleClose}
-                          anchorOrigin={{
-                          vertical: 'top',
-                          horizontal: 'left',
-                          }}
-                      >
-                          <Grid container direction='column-reverse'>
-                          {[0.5, 1, 1.5, 2].map(rate=>(<Button onClick={()=>onPlaybackRateChange(rate)} variant='text'>
-                              <Typography fontSize='10px' color={rate===playbackRate?'secondary':'default'}>{rate}</Typography>
-                          </Button>))}
-                          </Grid>
-    </Popover>
-
-                      <IconButton className='bottomIcons'>
-                          <FullscreenIcon style={{marginTop: '5px'}} fontSize='10px' className='bottomIcons'/>
-                      </IconButton>
                   </Grid>
               </Grid> 
                 )
