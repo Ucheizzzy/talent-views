@@ -15,60 +15,54 @@ import { useLocation } from "react-router-dom"
 
 
 
-const ProfilePostModal = ({closeModal,
+const ProfilePostModal = ({user,
   myPosts
     }) => {
     const history = useNavigate();
     const {id} = useParams()
-    const { user } = useContext(AuthContext)
     const [post, setPost] = useState([])
     // const [myPosts, setMyPosts] = useState([])
 
-    useEffect(()=> {
-        const getPost = async () => {
-            const { data } = await axios.get(`/posts/find/${id}`)
-            setPost(data.getOnePost)
-        }
-        getPost()
-    }, [id])
+
+// const backArrow = () => {
+//   let currentPostId = post;
+//   let currentPostIndex = 0;
+
+//   currentPostIndex = myPosts.findIndex(
+//     (postData, index) => postData._id === currentPostId._id
+//   );
 
 
-const backArrow = () => {
-  let currentPostId = post;
-  let currentPostIndex = 0;
+//   if (currentPostIndex > 0) {
+//     currentPostIndex--;
+//     console.log('currentPostIndex', currentPostIndex);
 
-  currentPostIndex = myPosts.findIndex(
-    (postData, index) => postData._id === currentPostId._id
-  );
+//     setPost(myPosts[currentPostIndex]);
+//   }
+//   history(`/profile/${user.username}/${post._id}`)
+// };
 
+// const forwardArrow = () => {
+//   let currentPostId = post;
+//   let currentPostIndex = 0;
 
-  if (currentPostIndex > 0) {
-    currentPostIndex--;
-    console.log('currentPostIndex', currentPostIndex);
-
-    setPost(myPosts[currentPostIndex]);
-  }
-};
-
-const forwardArrow = () => {
-  let currentPostId = post;
-  let currentPostIndex = 0;
-
-  currentPostIndex = myPosts.findIndex(
-    (postData, index) => { 
-    return postData._id === currentPostId._id
-}
-  );
+//   currentPostIndex = myPosts.findIndex(
+//     (postData, index) => { 
+//     return postData._id === currentPostId._id
+// }
+//   );
 
 
 
-  if (currentPostIndex < myPosts.length - 1) {
-    currentPostIndex++;
-    console.log('currentPostIndex', currentPostIndex);
+//   if (currentPostIndex < myPosts.length - 1) {
+//     currentPostIndex++;
+//     console.log('currentPostIndex', currentPostIndex);
 
-    setPost(myPosts[currentPostIndex]);
-  }
-};
+//     setPost(myPosts[currentPostIndex]);
+    
+//   }
+//   history(`/profile/${user.username}/${post._id}`)
+// };
 
     
     return(<>
@@ -76,24 +70,21 @@ const forwardArrow = () => {
     <div className="modal-Container">
             <div className="modalBackground-1">  
             <div className="modalLeft left"
-            onClick={backArrow}
+            // onClick={backArrow}
                 >
                     <ArrowBackIosRoundedIcon/>
                 </div>
                 <div className="modalRight right"
-                onClick={forwardArrow}
+                // onClick={forwardArrow}
                 >
                     <ArrowForwardIosRoundedIcon/>
                 </div> 
                 
                 <div class="modalContainer-1">
                     <div className="titleCloseBtn-1">
-                    <button onClick={(e) => {
-                        history(-1)
-                        e.stopPropagation()
-                        }}> X </button>
+                    <button> X </button>
                     </div>
-                   <Fullpost user={user} post={post}/>
+                   <Fullpost/>
                 </div>
             </div>
         

@@ -17,6 +17,7 @@ import Community from './pages/community';
 import Profile from './pages/profile';
 // import Fullpost from './components/fullpost';
 import PostModal from './components/postModal'
+import Account from './components/account';
 // import { Modal } from './components/modal';
 
 
@@ -30,61 +31,20 @@ function App() {
     <>
     <BrowserRouter>
       <Routes >
-      <Route path="/" element={user ? <Home /> : <Navigate to="/register" /> } />
-      <Route path="/register" element={!user ? <Register /> : <Navigate to="/" /> } />
-      <Route path="/signin" element={!user ? <Login /> : <Navigate to="/" /> } />
+      <Route path="/" element={<Home />}/>
+      <Route path="/register" element={<Register />} />
+      <Route path="/signin" element={<Login />} />
       <Route path="/success" element={<SuccessPage />} />
-        {/* </Route>
-        <Route exact path="/register" >
-          { !user ? <Register /> : <Navigate to="/" />}
-        </Route> */}
-        {/* <Route exact path="/signin" >
-          { !user ? <Login /> : <Navigate to="/"/>}
-        </Route> */}
-        {/* <Route exact path="/success">
-           <SuccessPage />
-        </Route>   */}
-        {user && (
-          <>
           <Route path="/movies" element={<Home type='Movies' />} />
           <Route path="/search" element={<Search />} />
           <Route path="/series" element={<Home type='Series' />} />
           <Route path="/timeline" element={<Dashboard />} />
           <Route path="/community/*" element={<Community />} />
-          <Route path="/profile/:id/*" element={<Profile />} />
+          <Route path="/profile/:username/*" element={<Profile />} />
           <Route path="/content/watch/:id" element={<Watch />} />
           <Route path="/content/:id" element={<ContentDescription />} />
           <Route path="/profile/user/*" element={<PostModal />} /> 
-          </>
-        )}
-        {/* {user && (
-        <>
-         
-        <Route exact path="/movies" >
-          <Home type='Movies'/>
-        </Route>
-        <Route exact path="/search" >
-          <Search />
-        </Route>
-        <Route exact path="/series" >
-          <Home type='Series'/>
-        </Route>
-        <Route exact path="/dashboard" >
-          <Dashboard />
-        </Route>
-        <Route exact path="/community" >
-          <Community />
-        </Route>
-        <Route exact path="/me" >
-          <Me />
-        </Route>
-        <Route exact path="/community/:id" children={<PostModal />} />
-        <Route exact path="/content/watch/:id" component={Watch} />
-        <Route exact path="/content/:id" component={ContentDescription} />
-        
-        </>
-        )} */}
-        {/* <Route path="/community/:id" element={<PostModal />} /> */}
+          <Route path="/account/:username" element={<Account />} />
       </Routes>
     </BrowserRouter>
     </>

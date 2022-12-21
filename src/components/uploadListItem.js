@@ -9,7 +9,7 @@ const Contentlistitem = ({upload}) => {
     const [hovered, setIshovered] = useState(false)
 
     return (
-        <Link to={`/community/${upload._id}`}>
+        // <Link to={`/community/${upload._id}`}>
         <div className='upload-list-item'>
             {! hovered ? (
                 <div className="vid-container"
@@ -17,8 +17,7 @@ const Contentlistitem = ({upload}) => {
                 onMouseLeave={()=>setIshovered(false)}
                 >
                 <video
-                src=
-                {upload.video[0].video}
+                src="https://player.vimeo.com/video/133021234?h=d0e2a333d6" width="640" height="360"
                 alt="" 
                 autoPlay="true"
                 muted
@@ -31,8 +30,7 @@ const Contentlistitem = ({upload}) => {
                 onMouseLeave={()=>setIshovered(false)}
                 >
                     <video
-                    src=
-                    {upload.video[0].video}
+                    src="https://player.vimeo.com/video/133021234?h=d0e2a333d6" width="640" height="360"
                     alt=""
                     loop
                     // autoPlay="false"
@@ -41,8 +39,8 @@ const Contentlistitem = ({upload}) => {
                     style={{
                         fontSize: '50px',
                         position: "absolute",
-                        bottom: '42%',
-                        left: '39%',
+                        bottom: '35%',
+                        left: '32%',
                     }}
                     />
                     <div className="vid-overlay"></div>
@@ -51,7 +49,7 @@ const Contentlistitem = ({upload}) => {
             
             }
         </div>
-        </Link>
+        // </Link>
     )
 }
 

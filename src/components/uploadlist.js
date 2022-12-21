@@ -14,13 +14,13 @@ const Contentlist = () => {
     const [post, setPost] = useState([])
 
 
-    useEffect(()=> {
-        const getPosts = async () => {
-            const res = await axios.get('/posts')
-            setPost(res.data.data)
-        }
-        getPosts()
-    }, [])
+    // useEffect(()=> {
+    //     const getPosts = async () => {
+    //         const res = await axios.get('/posts')
+    //         setPost(res.data.data)
+    //     }
+    //     getPosts()
+    // }, [])
 
     const ScrollToTop = () => {
         useLayoutEffect(() => {
@@ -38,11 +38,25 @@ const Contentlist = () => {
             <span class="contentlistTitle">The Community</span>
             <div className="upload-wrapper" >
                 <div className="upload-container" >
-                    {post.map((upload) => (
+                    {/* {post.map((upload) => (
                         // <Link to={`/content/${upload._id}`} key={upload._id} style={{textDecoration: 'none'}} >
                             <UploadListItem upload={upload} />
                         // </Link>
-                    ))}
+                    ))} */}
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem />
+                    <UploadListItem /> 
                 </div>
             </div>
         </div>

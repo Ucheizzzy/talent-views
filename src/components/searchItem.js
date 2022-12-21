@@ -20,73 +20,73 @@ const Search = ({content}) => {
     }
 
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        const getVideo = async () => {
+    //     const getVideo = async () => {
 
-            try {
-                const { data } = await axios.get('movies/find/'+ content._id, {
-                    headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
-                    }
-                })
-                setCaption(data)
-                // console.log(data)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        getVideo()
-    }, [history, content])
+    //         try {
+    //             const { data } = await axios.get('movies/find/'+ content._id, {
+    //                 headers: {
+    //                     token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+    //                 }
+    //             })
+    //             setCaption(data)
+    //             // console.log(data)
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     getVideo()
+    // }, [history, content])
 
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        const getImage = async () => {
+    //     const getImage = async () => {
 
-            try {
-                const { data } = await axios.get('movies/find/'+ content._id, {
-                    headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
-                    }
-                })
-                setMovie(data.thumbnail[0].thumbnail)
-                // console.log(data.thumbnail[0].thumbnail)
+    //         try {
+    //             const { data } = await axios.get('movies/find/'+ content._id, {
+    //                 headers: {
+    //                     token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+    //                 }
+    //             })
+    //             setMovie(data.thumbnail[0].thumbnail)
+    //             // console.log(data.thumbnail[0].thumbnail)
 
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        getImage()
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     getImage()
         
-        // render top of the page after link is clicked
-    }, [history, content])
+    //     // render top of the page after link is clicked
+    // }, [history, content])
 
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        const getCaption = async () => {
+    //     const getCaption = async () => {
 
-            try {
-                const { data } = await axios.get('movies/find/'+ content._id, {
-                    headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
-                    }
-                })
-                setVideo(data.trailer[0].trailer)
-                // console.log(data.trailer[0].trailer)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        getCaption()
+    //         try {
+    //             const { data } = await axios.get('movies/find/'+ content._id, {
+    //                 headers: {
+    //                     token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+    //                 }
+    //             })
+    //             setVideo(data.trailer[0].trailer)
+    //             // console.log(data.trailer[0].trailer)
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     getCaption()
         
-        // render top of the page after link is clicked
+    //     // render top of the page after link is clicked
         
-    }, [history, content])
+    // }, [history, content])
 
   return (
-            <Link to={`/content/${caption._id}`} style={{textDecoration: 'none'}}>
+            // <Link to={`/content/${caption._id}`} style={{textDecoration: 'none'}}>
             <div className='search-list'
             // style={{left: isHovered && index * 225 + index * 2.5}}
             onMouseEnter={()=> setIsHovered(true)} 
@@ -95,42 +95,34 @@ const Search = ({content}) => {
                         <img
                         className='search-image'    
                         onLoad={onLoad}    
-                        src={movie}
+                        src="https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
                         alt="" />
-                    {
-                        !imgsLoaded && 
-                            <img
-                            className='search-image-2' 
-                            style={{position: 'absolute', left: '0px'}}       
-                            src='./loading.gif'
-                            alt="" />
-                    }   
             
             {isHovered && (
                 <>
-            <video className="search-list-video" src={video} autoPlay={true} loop />
+            <video className="search-list-video" width="560" height="315" src="https://www.youtube.com/embed/Qh6O9xqsCZs" autoPlay={true} loop />
             <div className="search-itemInfo">
                 <div className="itemIcons">
                     <span className="search-orange">
-                        <span className="now">{caption.title}</span>
+                        <span className="now">Movie</span>
                     </span>
                 </div>
                 <div className="item-desc">
-                    <span>{caption.duration}</span>
-                    <span className="limit">+{caption.ageLimit}</span>
-                    <span>{caption.year}</span>
+                    <span>2 hr</span>
+                    <span className="limit">+17</span>
+                    <span>1994</span>
                 </div>
-                    <div className="list-item-caption">Director: {caption.director} 
+                    <div className="list-item-caption">Director: Isreal
                 </div>
-                <div className="list-item-caption">{caption.description}</div>
-                <div className="genre">{caption.genre}</div>
+                <div className="list-item-caption">A movie</div>
+                <div className="genre">Drama</div>
                 </div>
             
 
             </>
              )}
              </div>
-             </Link>
+            //  </Link>
                         );
 }
 

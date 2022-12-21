@@ -8,6 +8,7 @@ import '../css/film.modules.css'
 // import List from './list'
 import Footer from './footer'
 import '../css/featured.modules.css'
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import Navbar from './navbar'
 import Contentlist from './contentlist'
 import {useParams} from 'react-router-dom'
@@ -39,106 +40,90 @@ const [movie, setMovie] = useState({
 const [image, setImage] = useState('')
 
 
-    useEffect(() => {
-        const getMovie = async () => {
+    // useEffect(() => {
+    //     const getMovie = async () => {
 
-            try {
-                const {data} = await axios.get(`/movies/find/${id}`, {
-                    headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+    //         try {
+    //             const {data} = await axios.get(`/movies/find/${id}`, {
+    //                 headers: {
+    //                     token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
                         
-                    }
-                })
-                setMovie(data)
-                setImage(data.image[0])
-                window.scrollTo(0, 0);
-            } catch (err) {
-                console.log(err)
-            }
+    //                 }
+    //             })
+    //             setMovie(data)
+    //             setImage(data.image[0])
+    //             window.scrollTo(0, 0);
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
             
 
-        }
-        getMovie()
-    }, [id])
+    //     }
+    //     getMovie()
+    // }, [id])
 
 
 
      return (
         <>
         <Navbar />
+        <div className="content-summary">
         <div className='featured' >
              <LazyLoadImage
              effect="opacity" 
              className='featured-jumbotron'
-            //  style={{position: "fixed"}}
-            // height='100%'
-            src={image.image}
+             style={{position: "fixed"}}
+            height='100%'
+            src="https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
             alt="" 
             />
             <div className="info">
-            <span className="film-desc-title">{movie.title}</span>
-            <div className="film-details">
-                        <span className="ul">
-                        <p>Genre: <span>{movie.genre}</span></p>
-                        <p>Director: <span>{movie.director}</span></p>
-                        <p>Duration: <span>{movie.duration}</span></p>
-                        <p>Year: <span>{movie.year}</span></p>
-                        <p>Rated: <span>{movie.ageLimit}</span></p>
-                        </span>
-                </div>
+            <span className="film-desc-title">Movie</span>
+            {/* <Link to={`/content/watch/${movie.content[0]?._id}`}> */}
+                <button className="info-btn"><PlayArrowRoundedIcon />Play</button>
+            {/* </Link> */}
             </div>
 
              </div>
         <div className='film-container' >
-             
-            
-            <div className='title'>
-                <h1> {movie.title}</h1>
-            </div>
+            <div className="content-grid">
             <div className="abouts-container">
-                <div className="film-description">
-                    <span >
-                        {movie.description}
-                    </span>
-                </div>
+            <div className="film-details">
+                        <span className="p-span">1994</span>
+                        <span className="p-span">Rated: <span className='rated-border'>+17</span></span>
+            </div>
+                
                 
             </div>
-            {/* <div className="banner"></div> */}
+            <div className="content-inffo">
+                <span className="p-span">Drama</span>
+            </div>
+                <div className="film-description">
+                    <span >
+                        A movie
+                    </span>
+                </div>
+                <span className="p-span directed">Directed by: <span> Isreal</span></span>
+            </div>
+            <div className="trailer">
+                <span>Trailer</span>
+                {/* <button className="episodes">Episodes</button> */}
+            </div>
             <div className="section-2">
                 <div className="film-content-container">
                 
-                {movie.content.map((mov) => (
-                    <Link to={`/content/watch/${mov._id}`} key={mov._id} className='i-m-g'>
+                {/* {movie.content.map((mov) => ( */}
+                    {/* // <Link to={`/content/watch/${mov._id}`} key={mov._id} className='i-m-g'> */}
                     <div className="img" >
-                        
-                            <img
-                            className='glow'
-                            src={image.image}
-                            alt="" />
-                        
-                        < >
-                        
-                        <div className="desk">
-                            <span className="new-title">{mov.title}</span>
-                            <span className='c-span'>{mov.duration}</span>
-                            <span className='c-span'>{mov.description}</span>
+                    <img className='glow' src="https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80" alt="" />
+                        <div className="desk"><span className="new-title">Movie</span><span className='c-span'>A Movie</span>
                         </div>
-                        </>
-
-                     </div>
-                     </Link> 
-                   ))}
-                    
+                        <div className="duration p-span">1h</div>
+                     </div>     
+                    </div>   
                     </div>
-
-                       
-
-                   
-                    
-                
             </div>
-            <Contentlist movie={movie} />
-            <Footer/>
+            <Contentlist />
         </div>
         </>
     )

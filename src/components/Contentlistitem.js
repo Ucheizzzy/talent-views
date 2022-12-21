@@ -13,12 +13,8 @@ const Contentlistitem = ({ card }) => {
         <div className='content-list-item'>
             
             <img
-            src={card.image[0].image}
+            src="https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
             alt="" />
-            {/* {isHovered && ( */}
-            {/* // <video className="contentlistVideo" src={trailer} autoPlay={true} loop/>  */}
-            {/* )} */}
-                <span className='content-title'>{card.title}</span>
         </div>
     )
 }
