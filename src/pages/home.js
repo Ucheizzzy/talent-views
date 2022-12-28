@@ -28,12 +28,30 @@ const Home = ({ type }) => {
   //     getRandomList()
   // }, [type, genre])
 
+  // const getRandomList = async () => {
+  //   try {
+  //     await axios
+  //       .get('http://127.0.0.1:8000/api/movie/allmovies')
+  //       .then((response) => {
+  //         console.log(response.data)
+  //       })
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+  // const config = {
+  //   headers: {
+  //     accept: 'application/json',
+  //   },
+  //   data: {},
+  // }
   const getRandomList = async () => {
     try {
-      const { movie } = await axios
-        .get('http://127.0.0.1:8000/api/movie/allmovies')
+      await axios
+        .get('http://127.0.0.1:8001/api/movie/allmovies', config)
         .then((response) => {
-          console.log(response.data)
+          console.log('data:', response?.data?.data)
         })
     } catch (err) {
       console.log(err)
