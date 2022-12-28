@@ -206,7 +206,7 @@ const Dashboard = ({video}) => {
                             <div className="post-imagery">
                                 <ReactPlayer
                                 // ref={playerRef}
-                                url="https://player.vimeo.com/video/133021234?h=d0e2a333d6" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+                                url="" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
                                 // playing={playing} 
                                 // muted={muted}
                                 // volume={volume}

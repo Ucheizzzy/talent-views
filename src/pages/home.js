@@ -27,13 +27,12 @@ const Home = ({ type }) => {
   //     };
   //     getRandomList()
   // }, [type, genre])
-
   const getRandomList = async () => {
     try {
       const { movie } = await axios
-        .get('http://127.0.0.1:8000/api/movie/allmovies')
+        .get('http://127.0.0.1:8001/api/user/allusers')
         .then((response) => {
-          console.log(response.data)
+          console.log("data:", response?.data?.data);
         })
     } catch (err) {
       console.log(err)
@@ -44,19 +43,37 @@ const Home = ({ type }) => {
     getRandomList()
   }, [])
 
+  const getRandom = async () => {
+    try {
+      const { movie } = await axios
+        .get('http://127.0.0.1:8001/api/movie/allmovies')
+        .then((response) => {
+          console.log("data:", response?.data?.data);
+        })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getRandom()
+  }, [])
+
+
+
   return (
     <div className='App'>
       <Navbar />
       <div className='home-body'>
-        <Featured />
+        <Featured/>
         <div className='bottom-body'>
           <Contentlist />
           <UploadList />
           <List />
+          {/* <List />
           <List />
           <List />
-          <List />
-          <List />
+          <List /> */}
         </div>
       </div>
     </div>

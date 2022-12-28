@@ -9,7 +9,7 @@ import '../css/featured.modules.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/opacity.css'
 
-const Featured = ({type, setGenre}) => {
+const Featured = ({type, setGenre, listdata}) => {
 
 
     const [content, setContent] = useState({});
@@ -77,20 +77,21 @@ const Featured = ({type, setGenre}) => {
      {/* ( */}
                 <>
             <video className="featured-image-2"
-            width="560" height="315" src="https://www.youtube.com/embed/Qh6O9xqsCZs"
+            width="560" height="315" 
+            src=""
             autoPlay={true} 
             loop />
             </>
             {/* )} */}
             
             <div className="info">
-                <span className="film-title">Film</span>
-                <span className="description">A film</span>
+                <span className="film-title">{listdata?.name}</span>
+                <span className="description">{listdata?.description}</span>
                 <span className="genre"></span>
                 <span className="rated">Drama<b>+17</b></span>
                 {/* {isClicked ?  */}
                 <div className="more">
-                    <span>Directed By Isreal</span> 
+                    <span>Directed By {listdata?.director}</span> 
                     <span>1994</span>
                     <span>2 hr</span>
                     {/* <Link to={`/content/${content._id}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}> */}

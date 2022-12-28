@@ -157,23 +157,23 @@ const Watch = () => {
 
     
 
-    useEffect(() => {
-        const getContent = async () => {
-            try {
-                const { data } = await axios.get(`/content/find/${params.id}`, {
-                    headers: {
-                        token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
-                    }
-                })
-                setFilm(data)
-                setVideo(data.videoHD[0])
-            } catch (err) {
-                console.log(err)
-            }
+    // useEffect(() => {
+    //     const getContent = async () => {
+    //         try {
+    //             const { data } = await axios.get(`/content/find/${params.id}`, {
+    //                 headers: {
+    //                     token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+    //                 }
+    //             })
+    //             setFilm(data)
+    //             setVideo(data.videoHD[0])
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
 
-        }
-        getContent()
-    }, [params.id])
+    //     }
+    //     getContent()
+    // }, [params.id])
 
 
 
@@ -248,9 +248,9 @@ const Watch = () => {
                       ? (
                     <div className="details">
                         <span className='watching'>Keep Watching</span>
-                        <span className='overlay-title'>{film.title}</span>
-                        <span className='director'>Directed by {film.director}</span>
-                        <span className="overlay-subtitle">{film.description}</span>
+                        <span className='overlay-title'>film title</span>
+                        <span className='director'>Directed by Isreal</span>
+                        <span className="overlay-subtitle">film description</span>
                     </div>
                       ) : (null)}}
                       </Media>
@@ -258,7 +258,7 @@ const Watch = () => {
                     )}
             </div>
 
-            <PlayerControls
+            {/* <PlayerControls
             film={film}
             ref={controlsRef}
             onPlayPause={handlePlayPause}
@@ -279,7 +279,7 @@ const Watch = () => {
             elapsedTime={elapsedTime}
             totalDuration={totalDuration}
             onChangeDisplayFormat={handleChangeDisplayFormat}
-            />
+            /> */}
            
             </div>
             </div>

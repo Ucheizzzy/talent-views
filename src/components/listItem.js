@@ -56,23 +56,23 @@ const ListItem = ({ index, item }) => {
   //     getImage()
   // }, [item, history])
 
-  useEffect(() => {
-    const getCaption = async () => {
-      try {
-        const { data } = await axios.get('movies/find/' + item, {
-          headers: {
-            token:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M',
-          },
-        })
+  // useEffect(() => {
+  //   const getCaption = async () => {
+  //     try {
+  //       const { data } = await axios.get('movies/find/' + item, {
+  //         headers: {
+  //           token:
+  //             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M',
+  //         },
+  //       })
 
-        setVideo(data.trailer[0].trailer)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    getCaption()
-  }, [item, history])
+  //       setVideo(data.trailer[0].trailer)
+  //     } catch (err) {
+  //       console.log(err)
+  //     }
+  //   }
+  //   getCaption()
+  // }, [item, history])
 
   return (
     <>
@@ -97,7 +97,7 @@ const ListItem = ({ index, item }) => {
                   <>
                     <video
                       className='listVideo'
-                      src='https://player.vimeo.com/video/133021234?h=d0e2a333d6'
+                      src=''
                       width='640'
                       height='360'
                       frameborder='0'

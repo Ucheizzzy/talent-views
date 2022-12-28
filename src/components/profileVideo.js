@@ -36,7 +36,7 @@ const ProfileVideo = ({video}) => {
                         <div className="post-imag-e">
                                 <>
                                 <div className="imagey-user">
-                                <img src="https://player.vimeo.com/video/133021234?h=d0e2a333d6"
+                                <img src=""
                                  height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen alt="" className="imagey-image" />
                                 <span className="imagey-words">Username</span>
                                 </div> 

@@ -276,7 +276,7 @@ return(
                     {/* <video id=""className="fullpost-img" src={vid} alt="new stuff" type="mp4" controls/> */}
                     <ReactPlayer
                     // ref={playerRef}
-                    url="https://player.vimeo.com/video/133021234?h=d0e2a333d6" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+                    url="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
                     // playing={playing} 
                     // muted={muted}
                     // volume={volume}

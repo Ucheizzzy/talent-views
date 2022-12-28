@@ -4,7 +4,7 @@ import '../css/uploadlistitem.modules.css'
 import { Link } from 'react-router-dom'
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 
-const Contentlistitem = ({upload}) => {
+const Contentlistitem = ({upload, item}) => {
 
     const [hovered, setIshovered] = useState(false)
 
@@ -16,8 +16,9 @@ const Contentlistitem = ({upload}) => {
                 onMouseOver={()=>setIshovered(true)}
                 onMouseLeave={()=>setIshovered(false)}
                 >
+                    <p>{item.name}</p>
                 <video
-                src="https://player.vimeo.com/video/133021234?h=d0e2a333d6" width="640" height="360"
+                src="https://www.pexels.com/video/people-with-umbrella-walking-on-the-bridge-8242999/" width="640" height="360"
                 alt="" 
                 autoPlay="true"
                 muted
@@ -30,11 +31,12 @@ const Contentlistitem = ({upload}) => {
                 onMouseLeave={()=>setIshovered(false)}
                 >
                     <video
-                    src="https://player.vimeo.com/video/133021234?h=d0e2a333d6" width="640" height="360"
+                    src="https://www.pexels.com/video/people-with-umbrella-walking-on-the-bridge-8242999/" width="640" height="360"
                     alt=""
                     loop
                     // autoPlay="false"
                     type="video/mp4"/>
+                    <p>{item.name}</p>
                     <PlayArrowRoundedIcon
                     style={{
                         fontSize: '50px',
