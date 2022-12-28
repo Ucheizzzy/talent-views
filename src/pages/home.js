@@ -49,7 +49,9 @@ const Home = ({ type }) => {
   const getRandomList = async () => {
     try {
       await axios
-        .get('http://127.0.0.1:8001/api/movie/allmovies', config)
+        .get(
+          'https://cors-anywhere.herokuapp.com/http://127.0.0.1:8000/api/user/allusers'
+        )
         .then((response) => {
           console.log('data:', response?.data?.data)
         })
