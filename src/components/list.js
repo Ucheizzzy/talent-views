@@ -15,6 +15,8 @@ const List = ({list}) => {
 
     const listRef = useRef()
 
+    console.log(list);
+
 
     const handleClick = (direction) => {
         setIsMoved(true)
@@ -56,6 +58,7 @@ const List = ({list}) => {
                         </div>
                         </div>
                     ))} */}
+
                     <ListItem />
                     <ListItem />
                     <ListItem />

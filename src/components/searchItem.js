@@ -100,7 +100,8 @@ const Search = ({content}) => {
             
             {isHovered && (
                 <>
-            <video className="search-list-video" width="560" height="315" src="https://www.youtube.com/embed/Qh6O9xqsCZs" autoPlay={true} loop />
+            <video className="search-list-video" width="560" height="315" 
+            src="" autoPlay={true} loop />
             <div className="search-itemInfo">
                 <div className="itemIcons">
                     <span className="search-orange">
