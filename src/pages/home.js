@@ -14,46 +14,27 @@ const Home = ({ type }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [lists, setLists] = useState([])
   const [genre, setGenre] = useState(null)
-  // const [movie, setMovie] = useState([])
-
-  // useEffect(() => {
-  //     const getRandomList = async () => {
-  //         try {
-  //             const res = await axios.get(`lists${type ? '?type='+ type : ''}${genre ? '&genre='+ genre : ''}`)
-  //             setLists(res.data)
-  //         } catch (err) {
-  //             console.log(err )
-  //         }
-  //     };
-  //     getRandomList()
-  // }, [type, genre])
-  const getRandomList = async () => {
-    try {
-      const { movie } = await axios
-        .get('http://127.0.0.1:8001/api/user/allusers')
-        .then((response) => {
-          console.log("data:", response?.data?.data);
-        })
-    } catch (err) {
-      console.log(err)
+  const [film, setFilm] = useState({})
+  const user = JSON.parse(localStorage.getItem('user'));
+  const token = user?.data?.token
+  const config = {
+    headers:{
+      'Authorization': `Bearer ${token}`
     }
-  }
-
-  useEffect(() => {
-    getRandomList()
-  }, [])
-
+  };
   const getRandom = async () => {
     try {
       const { movie } = await axios
-        .get('http://127.0.0.1:8001/api/movie/allmovies')
+        .get('http://127.0.0.1:8000/api/movie/allmovies', config)
         .then((response) => {
-          console.log("data:", response?.data?.data);
+          // console.log("data:", response?.data?.data[0]);
+          setFilm(response?.data?.data[1]);
         })
     } catch (err) {
       console.log(err)
     }
   }
+  console.log(user?.data?.user)
 
   useEffect(() => {
     getRandom()
@@ -65,7 +46,7 @@ const Home = ({ type }) => {
     <div className='App'>
       <Navbar />
       <div className='home-body'>
-        <Featured/>
+        <Featured film={film}/>
         <div className='bottom-body'>
           <Contentlist />
           <UploadList />

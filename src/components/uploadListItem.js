@@ -16,7 +16,7 @@ const Contentlistitem = ({upload, item}) => {
                 onMouseOver={()=>setIshovered(true)}
                 onMouseLeave={()=>setIshovered(false)}
                 >
-                    <p>{item.name}</p>
+                    {/* <p>{item.name}</p> */}
                 <video
                 src="https://www.pexels.com/video/people-with-umbrella-walking-on-the-bridge-8242999/" width="640" height="360"
                 alt="" 

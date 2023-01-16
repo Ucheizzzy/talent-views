@@ -81,6 +81,22 @@
     padding-left: 10px;
 }
 
+.form-control {
+    height: 40px;
+    background-color: black;
+    opacity: 0.7;
+    border: 1px solid white;
+    color: white;
+    outline: none;
+    padding-left: 10px; 
+    width: -webkit-fill-available;
+}
+
+.alert {
+    font-size: 25px;
+    font-weight: 800;
+}
+
 .input-password {
     position: relative;
 }
@@ -94,6 +110,11 @@
 
 .visibility:hover {
     cursor: pointer;
+}
+
+.input-email {
+    display: block;
+    width: 100%;
 }
 
 .input-password > input {

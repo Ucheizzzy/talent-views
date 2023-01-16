@@ -9,14 +9,14 @@ import '../css/featured.modules.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/opacity.css'
 
-const Featured = ({type, setGenre, listdata}) => {
+const Featured = ({type, setGenre, listdata, film}) => {
 
 
     const [content, setContent] = useState({});
     const [trailer, setTrailer] = useState({});
     const [imagee, setImagee] = useState({})
     const [video, setVideo] = useState({})
-    // const [isClicked, setIsClicked] = useState(false)
+    const [isClicked, setIsClicked] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
     
 
@@ -43,8 +43,8 @@ const Featured = ({type, setGenre, listdata}) => {
 
     return (
         <div className='featured'
-        // onMouseEnter={()=> setIsHovered(true)} 
-        // onMouseLeave={()=> setIsHovered(false)}
+        onMouseEnter={()=> setIsHovered(true)} 
+        onMouseLeave={()=> setIsHovered(false)}
         >
             {/* {type && ( */}
                 <div className="category">
@@ -67,38 +67,38 @@ const Featured = ({type, setGenre, listdata}) => {
                 </div>
             {/* )} */}
 
-    {/* {!isHovered ? (
+    {!isHovered ? (
             <div 
             className="featured-image"
             style={{backgroundImage: `linear-gradient(to bottom, transparent, #000000), url(https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80)`, objectFit: 'cover'}}>
 
             </div>
-    ) : */}
-     {/* ( */}
+    ) :
+     (
                 <>
             <video className="featured-image-2"
             width="560" height="315" 
-            src=""
+            src={film?.episodes[0]?.video}
             autoPlay={true} 
             loop />
             </>
-            {/* )} */}
+            )}
             
             <div className="info">
-                <span className="film-title">{listdata?.name}</span>
-                <span className="description">{listdata?.description}</span>
+                <span className="film-title">{film?.name}</span>
+                <span className="description">{film?.description}</span>
                 <span className="genre"></span>
-                <span className="rated">Drama<b>+17</b></span>
-                {/* {isClicked ?  */}
+                <span className="rated">Drama<b>+{film?.age_rating}</b></span>
+                {isClicked ? 
                 <div className="more">
-                    <span>Directed By {listdata?.director}</span> 
-                    <span>1994</span>
-                    <span>2 hr</span>
+                    <span>Directed By {film?.director}</span> 
+                    <span>{film?.year}</span>
+                    <span>{film?.episodes[0]?.duration}</span>
                     {/* <Link to={`/content/${content._id}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}> */}
                         <span className='somemore'>more...</span>
                     {/* </Link> */}
                  </div>
-                {/* : null} */}
+                : null} 
                  <div className="buttons">
                     <button className="play">
                     {/* <Link to={`/content/watch/${video}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}> */}
@@ -106,7 +106,7 @@ const Featured = ({type, setGenre, listdata}) => {
                     {/* </Link> */}
                     </button>
                     <button className="more-info" 
-                    // onClick={()=> isClicked ? setIsClicked(false): setIsClicked(true)}
+                    onClick={()=> isClicked ? setIsClicked(false): setIsClicked(true)}
                     >
 
                         <InfoOutlined style={{width: '0.5em',height: '0.7em', color: 'black'}} />

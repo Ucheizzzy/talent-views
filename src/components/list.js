@@ -15,8 +15,6 @@ const List = ({list}) => {
 
     const listRef = useRef()
 
-    console.log(list);
-
 
     const handleClick = (direction) => {
         setIsMoved(true)
