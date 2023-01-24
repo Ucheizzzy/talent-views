@@ -1,13 +1,15 @@
 import { ArrowDropDown, Notifications, KeyboardArrowDownOutlined } from '@material-ui/icons'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import React, { useContext, useState, useRef } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from '../Redux/actions/auth';
 import { useEffect } from 'react'
 import { createSearchParams, Link, useSearchParams, useParams } from 'react-router-dom'
 import '../css/navbar.modules.css'
 import SearchBar from './searchBar'
 import axios from 'axios'
 import { AuthContext } from '../authContext/authContext'
-import { logout } from '../authContext/authActions'
+// import { logout } from '../authContext/authActions'
 import { useNavigate } from 'react-router-dom'
 import useDebounce from './debounce_hook/useDebounce'
 import Media from "react-media"
@@ -30,8 +32,9 @@ const Navbar = ({ searchTerm,
     const [isScrolled, setisScrolled] = useState(false);
     const [movie, setMovie] = useState([]);
     const [user, setUser] = useState([])
-    const {dispatch, user: userInfo} = useContext(AuthContext)
+    // const {dispatch, user: userInfo} = useContext(AuthContext)
     const searchRef = useRef(null)
+    const dispatch = useDispatch();
     
 
     window.onscroll = () => {
@@ -69,10 +72,10 @@ const Navbar = ({ searchTerm,
 //       return null
 //   }
 
-//   function setClicked() {
-//       dispatch(logout())
-//       history('/register')
-//   }
+  function setClicked() {
+      dispatch(logout())
+      history('/register')
+  }
 
 //   const handleFilter = (event) => {
 //         event.preventDefault()
@@ -180,7 +183,7 @@ const Navbar = ({ searchTerm,
                             {/* <Link to={`/account/${user.username}`} style={{textDecoration: 'none', color: 'white'}}> */}
                                 <span className='drop-option'>Account</span>
                             {/* </Link> */}
-                            <span className='drop-option'>Logout</span>
+                            <span className='drop-option' onClick={setClicked}>Logout</span>
                         </div>
                     </div>
                 </div>

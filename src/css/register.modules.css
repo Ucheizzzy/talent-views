@@ -147,10 +147,28 @@
 
 .intro {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
 }
+
+.form {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.labels {
+ color: white;
+ font-size: 15px;
+ font-weight: 500;
+}
+
+
 .intro > span {
     color: white;
     font-size: 50px;

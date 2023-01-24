@@ -6,16 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './authContext/authContext';
 import { UserContextProvider } from './userContext/userContext';
 import { MovieContextProvider } from './Context/movieContext/movieContext';
+import { Provider } from "react-redux";
+import store from './Redux/store/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthContextProvider>
+    {/* <AuthContextProvider>
       <UserContextProvider>
-        <MovieContextProvider>
+        <MovieContextProvider> */}
+        <Provider store={store} >
           <App />
-        </MovieContextProvider>
+        </Provider>  
+        {/* </MovieContextProvider>
       </UserContextProvider>
-    </AuthContextProvider>
+    </AuthContextProvider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

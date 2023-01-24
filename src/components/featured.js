@@ -10,12 +10,12 @@ import '../css/featured.modules.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/opacity.css'
 
-const Featured = ({ type, setGenre }) => {
+const Featured = ({ type, setGenre, listdata, film }) => {
   const [content, setContent] = useState({})
   const [trailer, setTrailer] = useState({})
   const [imagee, setImagee] = useState({})
   const [video, setVideo] = useState({})
-  // const [isClicked, setIsClicked] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
   // useEffect(() => {
@@ -36,12 +36,12 @@ const Featured = ({ type, setGenre }) => {
   //     };
   //     getRandomContent()
   // }, [type])
-  // console.log(movies)
+
   return (
     <div
       className='featured'
-      // onMouseEnter={()=> setIsHovered(true)}
-      // onMouseLeave={()=> setIsHovered(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* {type && ( */}
       <div className='category'>
@@ -85,15 +85,15 @@ const Featured = ({ type, setGenre }) => {
       {/* )} */}
 
       <div className='info'>
-        <span className='film-title'></span>
-        <span className='description'>description</span>
+        <span className='film-title'>{listdata?.name}</span>
+        <span className='description'>{listdata?.description}</span>
         <span className='genre'></span>
         <span className='rated'>
           Drama<b>+17</b>
         </span>
         {/* {isClicked ?  */}
         <div className='more'>
-          <span>Directed By director</span>
+          <span>Directed By {listdata?.director}</span>
           <span>1994</span>
           <span>2 hr</span>
           {/* <Link to={`/content/${content._id}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}> */}
