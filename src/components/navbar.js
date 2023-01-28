@@ -38,6 +38,7 @@ const Navbar = ({ searchTerm,
   function setClicked() {
     dispatch(logout())
       history('/register')
+      window.location.reload()
   }
 
     const handleFocus = (e) => {
