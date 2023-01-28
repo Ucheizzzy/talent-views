@@ -18,8 +18,6 @@ const Modal = ({closeModal, profile}) => {
         const value = e.target.value
         setPost({...post, [e.target.name]: value})
     }
-
-    
     
     const handleSubmit = async (e) => {
         setIsLoading(true)
@@ -50,7 +48,7 @@ const Modal = ({closeModal, profile}) => {
                 <button onClick={() => closeModal(false)}> X </button>
                 </div>
                 <div className="modTitle">
-                    <textarea className="des-cc" type="text" name="description" placeholder="What's going on Isreal" onChange={handleChange}></textarea>
+                    <textarea className="des-cc" type="text" name="description" placeholder="What's going on..." onChange={handleChange}></textarea>
                 </div>
                 <div className="bodyy" >
                     <div className="upload-body">
