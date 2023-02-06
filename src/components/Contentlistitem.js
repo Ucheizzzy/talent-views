@@ -9,9 +9,13 @@ const Contentlistitem = () => {
 
   // const trailer = '/fdp.mp4'
 
+  // const trailer = '/fdp.mp4'
   return (
-    <div className='content-list-item'>
-      <img src='' alt='' />
+    <div className='contentt'>
+      <div className='content-list-item'>
+        <img src={card?.episodes[0]?.thumbnail || '/cinema.jpeg'} alt='' />
+      </div>
+      <span className='text'>{card?.name}</span>
     </div>
   )
 }

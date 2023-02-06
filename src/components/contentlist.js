@@ -10,8 +10,11 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const Contentlist = () => {
+const Contentlist = (film, lists) => {
+  const movies = film?.film
+  const newlists = film?.lists
   const history = useNavigate()
+  console.log(movies, newlists)
 
   const [featured, setFeatured] = useState([])
   const [movies, setMovies] = useState([])
@@ -34,15 +37,15 @@ const Contentlist = () => {
       <span className='contentlistTitle'>Recommended Films</span>
       <div className='content-wrapper'>
         <div className='content-container'>
-          {/* {featured.map((card) => (
-                        <Link to={`/content/${card._id}`} key={card._id} style={{textDecoration: 'none'}} >
-                            <ContentlistItem card={card} />
-                        </Link>
-                    ))} */}
-          {/* {movies.map((movie) => {
-            return <ContentlistItem key={movie.id} {...movie} />
-          })} */}
-          <ContentlistItem />
+          {movies.map((card) => (
+            <Link
+              to={`/content/${card.id}`}
+              key={card.id}
+              style={{ textDecoration: 'none' }}
+            >
+              <ContentlistItem card={card} />
+            </Link>
+          ))}
         </div>
       </div>
     </div>

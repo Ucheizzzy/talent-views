@@ -16,62 +16,24 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import Navbar from '../components/navbar'
 import PostModal from '../components/postModal'
 import '../css/community.modules.css'
-
 import Video from '../components/video'
-
 import { Routes, Route } from 'react-router-dom'
-
-// Modal.setAppElement('#root')
+import { API_URL } from '../services/user.service'
+import axios from 'axios'
+import authHeader from '../services/auth-header'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPost } from '../Redux/actions/post'
 
 const Community = () => {
   const [searchTerm, setSearchTerm] = useState('')
+  const dispatch = useDispatch()
+  const posts = useSelector((state) => state?.post?.posts)
+  console.log(posts)
 
-  const community = [
-    {
-      id: 1,
-      name: 'Anastasia Stevens',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/watch?v=S_rVV7NVVos',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-    {
-      id: 2,
-      name: 'Anastasia Stevens',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/watch?v=S_rVV7NVVos',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-    {
-      id: 3,
-      name: 'Anastasia Stevens',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/watch?v=S_rVV7NVVos',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-    {
-      id: 4,
-      name: 'Anastasia Stevens',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/watch?v=S_rVV7NVVos',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-  ]
+  useEffect(() => {
+    dispatch(getPost())
+  }, [dispatch])
+
   return (
     <>
       <div className='community-container'>
@@ -91,21 +53,17 @@ const Community = () => {
           </div>
         </div>
         <div className='premium-container'>
-          <div
-            className='video-list'
-            style={{
-              width: '1200px',
-              height: '1080px',
-            }}
-          >
-            {community.map((video) => {
-              return <Video key={video.id} {...video} />
-            })}
+          <div className='video-list'>
+            {posts?.map((post) => (
+              <Link to={{ pathname: `/community/${post.id}`, post: post }}>
+                <Video key={post?.id} post={post} />
+              </Link>
+            ))}
           </div>
         </div>
 
         <Routes>
-          <Route exact path='/:id' element={<PostModal />} />
+          <Route exact path='/:id' element={<PostModal posts={posts} />} />
         </Routes>
       </div>
     </>

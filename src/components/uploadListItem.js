@@ -7,6 +7,8 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 const Contentlistitem = ({ upload, item }) => {
   const [hovered, setIshovered] = useState(false)
 
+  const [hovered, setIshovered] = useState(false)
+
   return (
     // <Link to={`/community/${upload._id}`}>
     <div className='upload-list-item'>
@@ -16,9 +18,8 @@ const Contentlistitem = ({ upload, item }) => {
           onMouseOver={() => setIshovered(true)}
           onMouseLeave={() => setIshovered(false)}
         >
-          {/* <p>{item.name}</p> */}
           <video
-            src='https://www.pexels.com/video/people-with-umbrella-walking-on-the-bridge-8242999/'
+            src={item?.url}
             width='640'
             height='360'
             alt=''
@@ -35,7 +36,7 @@ const Contentlistitem = ({ upload, item }) => {
           onMouseLeave={() => setIshovered(false)}
         >
           <video
-            src='https://www.pexels.com/video/people-with-umbrella-walking-on-the-bridge-8242999/'
+            src={item?.url}
             width='640'
             height='360'
             alt=''
@@ -43,7 +44,6 @@ const Contentlistitem = ({ upload, item }) => {
             // autoPlay="false"
             type='video/mp4'
           />
-          <p>{item.name}</p>
           <PlayArrowRoundedIcon
             style={{
               fontSize: '50px',
@@ -56,7 +56,6 @@ const Contentlistitem = ({ upload, item }) => {
         </div>
       )}
     </div>
-    // </Link>
   )
 }
 

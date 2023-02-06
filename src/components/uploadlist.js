@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 // import HorizontalScroll from 'react-scroll-horizontal'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../services/user.service'
+import authHeader from '../services/auth-header'
 
 const Contentlist = () => {
   const history = useNavigate()
@@ -20,84 +22,38 @@ const Contentlist = () => {
   //     getPosts()
   // }, [])
 
-  const movies = [
-    {
-      id: 1,
-      name: 'Anastasia',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/embed/iJyXzy6NHF4',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-    {
-      id: 2,
-      name: 'Elon Musk',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/watch?v=S_rVV7NVVos',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-    {
-      id: 3,
-      name: 'Bill Gate',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/watch?v=S_rVV7NVVos',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-    {
-      id: 4,
-      name: 'Anastasia Stevens',
-      description:
-        'LIGHT AND SALT (FINAL CHARGE - 2022) WITH APOSTLE JOSHUA SELMAN ||18II12II2022',
-      url: 'https://www.youtube.com/watch?v=S_rVV7NVVos',
-      thumbnail: 'https://img.youtube.com/vi/S_rVV7NVVos/mqdefault.jpg',
-      preview: 'Great movie',
-      size: '40mb',
-      duration: '38177',
-    },
-  ]
-
-  const ScrollToTop = () => {
-    useLayoutEffect(() => {
-      window.scrollTo(0, 0)
+    useEffect(()=> {
+        const getPosts = async () => {
+            const res = await axios.get(API_URL + 'post/random', { headers: authHeader() })
+            setPost(res?.data?.data)
+        }
+        getPosts()
     }, [])
 
-    return null
-  }
+    
 
-  ScrollToTop()
+    const ScrollToTop = () => {
+        useLayoutEffect(() => {
+            window.scrollTo(0, 0);
+        }, []);
+    
+        return null;
+    };
+    ScrollToTop()
 
-  return (
-    <div className='upload-list'>
-      <span class='contentlistTitle'>The Community</span>
-      <div className='upload-wrapper'>
-        <div className='upload-container'>
-          {/* {post.map((upload) => (
-                        // <Link to={`/content/${upload._id}`} key={upload._id} style={{textDecoration: 'none'}} >
-                            <UploadListItem upload={upload} />
-                        // </Link>
-                    ))} */}
 
-          {movies.map((movie) => {
-            return (
-              <Link
-                to={`/content/${movie.id}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <UploadListItem key={movie.id} {...movie} />
-              </Link>
-            )
-          })}
+    return (
+        <div className='upload-list'>
+            <span class="contentlistTitle">The Community</span>
+            <div className="upload-wrapper" >
+                <div className="upload-container" >
+                    {post?.map((item)=>(
+                        <Link to={`/community/${item.id}`} key={item.id} style={{textDecoration: 'none'}} >
+                            <UploadListItem item={item} />
+                        </Link>
+                    ))}
+                </div>
+            </div>
         </div>
       </div>
     </div>

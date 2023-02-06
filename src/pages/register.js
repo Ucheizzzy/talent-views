@@ -68,7 +68,9 @@ const Register = () => {
     let navigate = useNavigate();
     const form = useRef();
     const checkBtn = useRef();
+    const [errMessage, setErrMessage] = useState('')
     const [show, setShow] = useState(false)
+    const [open, setOpen] = useState(false)
     const [first_name, setFirstname] = useState("");
     const [last_name, setLastname] = useState("");
     const [email, setEmail] = useState("");
@@ -79,6 +81,7 @@ const Register = () => {
 
     const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
+
   
     const onChangeFirstname = (e) => {
       const firstname = e.target.value;
@@ -113,29 +116,28 @@ const Register = () => {
     const handleShowHide = () => {
         setShow(!show)
     }
+
+    const handleShowHide1 = () => {
+      setOpen(!open)
+  }
   
     const handleRegister = (e) => {
       e.preventDefault();
       console.log(first_name, last_name, email, password, phone_number)
-  
       setSuccessful(false);
   
       form.current.validateAll();
-  
-      if (confirmpassword === password) {
-        return (
-        <div className="labels" role="alert">
-          The password does not match.
-        </div> 
-        )
-    } else if (checkBtn.current.context._errors.length === 0) {
+
+    if (password !== confirmpassword) setErrMessage("Password does not match!")
+
+    if (checkBtn.current.context._errors.length === 0 && password === confirmpassword) {
         dispatch(register(first_name, last_name, email, phone_number, password))
           .then(() => {
             navigate("/success");
             window.location.reload();
             setSuccessful(true);
           })
-          .catch(() => {
+          .catch((error) => {
             setSuccessful(false);
           });
       } 
@@ -143,7 +145,7 @@ const Register = () => {
     
     return (
         <div className='login' 
-        style={{backgroundImage: `url(https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80)` }}
+        style={{backgroundImage: `url(https://images.unsplash.com/photo-1527979809431-ea3d5c0c01c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1818&q=80)` }}
         >
             <div className="my-top-container">
             
@@ -165,6 +167,14 @@ const Register = () => {
         <Form onSubmit={handleRegister} className='form' ref={form}>
           {!successful && (
             <div>
+              {message && (
+            <div className="form-group">
+              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
               <div className="form-group">
                 <label htmlFor="username" className='labels'>First Name</label>
                 <Input
@@ -220,7 +230,7 @@ const Register = () => {
               <div className="form-group">
                 <label htmlFor="password" className='labels'>Password</label>
                 <Input
-                  type={show ? "text" : "password"}
+                  type={open ? "text" : "password"}
                   className="form-control"
                   name="password"
                   placeholder='Please input your password'
@@ -228,11 +238,18 @@ const Register = () => {
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
                 />
+                {errMessage && (
+            <div className="form-group">
+              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
+                {errMessage}
+              </div>
+            </div>
+          )}
                  {
-                    show ? (
-                         <span className='visibility' onClick={handleShowHide}><Visibility /></span>
+                    open ? (
+                         <span className='visibility' onClick={handleShowHide1}><Visibility /></span>
                     ) : (
-                        <span className='visibility' onClick={handleShowHide}><VisibilityOff /></span>
+                        <span className='visibility' onClick={handleShowHide1}><VisibilityOff /></span>
                      )
                 }
               </div>
@@ -248,6 +265,13 @@ const Register = () => {
                   onChange={onChangeConfirmPassword}
                   validations={[required, vpassword]}
                 />
+                {errMessage && (
+            <div className="form-group">
+              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
+                {errMessage}
+              </div>
+            </div>
+          )}
                  {
                     show ? (
                          <span className='visibility' onClick={handleShowHide}><Visibility /></span>
@@ -262,34 +286,10 @@ const Register = () => {
               </div>
             </div>
           )}
-
-          {message && (
-            <div className="form-group">
-              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
         </div>
     </div>
     </div>
-            // </div>
-                // </div>      
-                    // <div className='log-login-form'>
-                            // <input  type="text" required placeholder="Please input your username"  autoComplete="false"  className="log-login-input" />
-                    // <input  type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Please input your email"  autoComplete="false"  className="log-login-input" />
-
-                    // <input type="input" name='number' placeholder="Please input your phone number" autoComplete="false" className="log-login-input" />
-
-                    // <input type="password" name="password" placeholder="Please input your password" autoComplete="false" className="log-login-input" />
-
-                    // <input type="password" name='confirmPassword' placeholder="confirm Password" autoComplete="false" className="log-login-input" />
-                        
-                        // <button className="logins-button" >Join Us!</button>
-                // </div>
-            // </div> */}
     )
 }
 

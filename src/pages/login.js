@@ -69,7 +69,8 @@ const Login = () => {
         if (checkBtn.current.context._errors.length === 0) {
           dispatch(login(email, password))
             .then(() => {
-              // navigate("/");
+              navigate("/");
+              window.location.reload();
             })
             .catch(() => {
               setLoading(false);
@@ -79,18 +80,11 @@ const Login = () => {
         }
       };
 
-      if (isLoggedIn) {
-        return <Navigate to="/" />;
-      }
-
-
-
-    
     return (
         <div className='log-login' 
         style=
         {
-            {backgroundImage: `url(https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80)`}
+            {backgroundImage: `url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)`}
             }
             >
             <div className="top-container">
@@ -111,9 +105,9 @@ const Login = () => {
                             <Input type={show ? "text" : "password"} className="form-control" name="password" placeholder='Please input your password' value={password} onChange={onChangePassword} validations={[required]}/>
                             {
                                 show ? (
-                                    <span className='visibility' onClick={handleShowHide}><Visibility /></span>
+                                    <span className='visible' onClick={handleShowHide}><Visibility /></span>
                                 ) : (
-                                    <span className='visibility' onClick={handleShowHide}><VisibilityOff /></span>
+                                    <span className='visible' onClick={handleShowHide}><VisibilityOff /></span>
                                 )
                             }
                         </div>

@@ -160,12 +160,33 @@
 
 .form-group {
     margin-bottom: 10px;
+    position: relative;
+}
+
+.visibility {
+    position: absolute;
+    right: 3px;
+    top: 30px;
+    color: white;
+}
+
+.visibilities {
+    position: absolute;
+    top: 30px;
 }
 
 .labels {
  color: white;
  font-size: 15px;
  font-weight: 500;
+}
+
+.alert-success {
+    color: white;
+}
+
+.alert-danger {
+    color: red;
 }
 
 
