@@ -12,6 +12,7 @@ import Navbar from './navbar'
 import {Link, useParams} from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/opacity.css'
+import { API_URL } from '../BaseUrl/baseurl'
 
 
  
@@ -32,7 +33,7 @@ const user = JSON.parse(localStorage.getItem('user'));
     useEffect(() => {
         const getMovie = async () => {
             try {
-                const {data} = await axios.get(`http://127.0.0.1:8000/api/movie/${id}`, config)
+                const {data} = await axios.get(`${API_URL}movie/${id}`, config)
                 setMovie(data?.data?.movie)
                 console.log(data?.data?.movie)
                 setImage(data.data?.movie?.episodes[0]?.thumbnail)

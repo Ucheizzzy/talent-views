@@ -8,7 +8,7 @@ import ProfileModal from '../components/profileModal'
 import { Link, useParams } from 'react-router-dom'
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import Profile from '../pages/profile'
-import { API_URL } from '../services/user.service'
+import { API_URL } from '../BaseUrl/baseurl'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser } from '../Redux/actions/user'
 

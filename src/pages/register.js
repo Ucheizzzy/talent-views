@@ -121,27 +121,27 @@ const Register = () => {
       setOpen(!open)
   }
   
-    const handleRegister = (e) => {
-      e.preventDefault();
-      console.log(first_name, last_name, email, password, phone_number)
-      setSuccessful(false);
+    // const handleRegister = (e) => {
+    //   e.preventDefault();
+    //   console.log(first_name, last_name, email, password, phone_number)
+    //   setSuccessful(false);
   
-      form.current.validateAll();
+    //   form.current.validateAll();
 
-    if (password !== confirmpassword) setErrMessage("Password does not match!")
+    // if (password !== confirmpassword) setErrMessage("Password does not match!")
 
-    if (checkBtn.current.context._errors.length === 0 && password === confirmpassword) {
-        dispatch(register(first_name, last_name, email, phone_number, password))
-          .then(() => {
-            navigate("/success");
-            window.location.reload();
-            setSuccessful(true);
-          })
-          .catch((error) => {
-            setSuccessful(false);
-          });
-      } 
-    };
+    // if (checkBtn.current.context._errors.length === 0 && password === confirmpassword) {
+    //     dispatch(register(first_name, last_name, email, phone_number, password))
+    //       .then(() => {
+    //         navigate("/success");
+    //         window.location.reload();
+    //         setSuccessful(true);
+    //       })
+    //       .catch((error) => {
+    //         setSuccessful(false);
+    //       });
+    //   } 
+    // };
     
     return (
         <div className='login' 
@@ -164,7 +164,9 @@ const Register = () => {
             <div className="intro">
                 <span>Watch unlimited content to your hearts <strong className='strong'> content...</strong></span>
 
-        <Form onSubmit={handleRegister} className='form' ref={form}>
+        <Form 
+        // onSubmit={handleRegister} 
+        className='form' ref={form}>
           {!successful && (
             <div>
               {message && (

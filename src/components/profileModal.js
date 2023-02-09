@@ -8,7 +8,7 @@ import '../css/profilemodal.modules.css'
 import picture from '../images/stockphoto.jpeg'
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import { AuthContext } from '../authContext/authContext';
-import { API_URL } from '../services/user.service';
+import { API_URL } from '../BaseUrl/baseurl';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../Redux/actions/user';
 

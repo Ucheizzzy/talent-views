@@ -9,9 +9,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import UploadList from '../components/uploadlist'
 import { getSignedInUser } from '../Redux/actions/user'
-import { API_URL, getUserBoard } from '../services/user.service'
+// import { API_URL, getUserBoard } from '../services/user.service'
 import store from '../Redux/store/store'
 import authHeader from '../services/auth-header'
+import { API_URL } from '../BaseUrl/baseurl'
 
 
 const Home = ({ type }) => {

@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router'
 import '../css/modal.modules.css'
 import authHeader from '../services/auth-header'
-import { API_URL } from '../services/user.service'
+import { API_URL } from '../BaseUrl/baseurl'
 
 
 

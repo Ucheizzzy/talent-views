@@ -8,8 +8,9 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { login } from '../Redux/actions/auth';
 import { isEmail } from "validator";
+import { AuthContext } from '../authContext/authContext';
+import { login } from '../Context/authContext/apiCalls';
 
 const required = (value) => {
     if (!value) {
@@ -40,11 +41,12 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const { isFetching, dispatch } = useContext(AuthContext);
 
     const { isLoggedIn } = useSelector(state => state.auth);
     const { message } = useSelector(state => state.message);
   
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const onChangeEmail = (e) => {
         const email = e.target.value;
         setEmail(email);
@@ -67,7 +69,8 @@ const Login = () => {
         form.current.validateAll();
     
         if (checkBtn.current.context._errors.length === 0) {
-          dispatch(login(email, password))
+          // dispatch(login(email, password))
+          login({ email, password }, dispatch)
             .then(() => {
               navigate("/");
               window.location.reload();

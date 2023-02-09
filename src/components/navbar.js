@@ -2,17 +2,16 @@ import { ArrowDropDown, Notifications, KeyboardArrowDownOutlined } from '@materi
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import React, { useContext, useState, useRef } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from '../Redux/actions/auth';
 import { useEffect } from 'react'
 import { createSearchParams, Link, useSearchParams, useParams } from 'react-router-dom'
 import '../css/navbar.modules.css'
 import SearchBar from './searchBar'
 import axios from 'axios'
 import { AuthContext } from '../authContext/authContext'
-// import { logout } from '../authContext/authActions'
 import { useNavigate } from 'react-router-dom'
 import useDebounce from './debounce_hook/useDebounce'
 import Media from "react-media"
+import { logout } from '../Context/authContext/AuthActions';
 
 
 const Navbar = ({ searchTerm, 
@@ -22,9 +21,8 @@ const Navbar = ({ searchTerm,
     const input = setSearchTerm
     const debouncedSearch = useDebounce(searchTerm)
     const param = {q: debouncedSearch}
-    const {user} = useContext(AuthContext)
+    const {dispatch, user} = useContext(AuthContext)
     const [isScrolled, setisScrolled] = useState(false);
-    const dispatch = useDispatch()
   
     const profile = user?.data?.user
     const searchRef = useRef(null)
@@ -37,8 +35,9 @@ const Navbar = ({ searchTerm,
 
   function setClicked() {
     dispatch(logout())
-      history('/register')
-      window.location.reload()
+    window.location.reload()
+    history('/register')
+      
   }
 
     const handleFocus = (e) => {
@@ -133,7 +132,9 @@ const Navbar = ({ searchTerm,
                             <Link to={`/account/${profile.first_name}`} style={{textDecoration: 'none', color: 'white'}}>
                                 <span className='drop-option'>Account</span>
                             </Link>
-                            <span className='drop-option' onClick={setClicked}>Logout</span>
+                            <span className='drop-option' 
+                            onClick={setClicked}
+                            >Logout</span>
                         </div>
                     </div>
                 </div>

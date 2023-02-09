@@ -15,7 +15,7 @@ import { AuthContext } from '../authContext/authContext';
 import image from '../images/stockphoto.jpeg'
 import PostControl from '../components/postControl'
 import Video from './video';
-import { API_URL } from '../services/user.service';
+import { API_URL } from '../BaseUrl/baseurl';
 
 
 const formated = (seconds) => {

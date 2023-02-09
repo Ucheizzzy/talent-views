@@ -9,7 +9,7 @@ import Footer from '../components/footer'
 import Modal from '../components/modal'
 import Post from '../components/post'
 import Media from "react-media"
-import { API_URL } from '../services/user.service';
+import { API_URL } from '../BaseUrl/baseurl'
 import authHeader from '../services/auth-header';
 import { AuthContext } from '../authContext/authContext';
 // import { AuthContext } from '../authContext/authContext'
@@ -40,11 +40,12 @@ const Dashboard = () => {
         <div className="dash-timeline">
         <div className="side-bar">
                 <div className="side-content-container">
-
+                    <Link to={`/profile/${profile?.id}`}>
                         <div className="side-log-o" style={{textDecoration: 'none', color: '#ff7e00', margin: '20px 0'}}>
                             <Home className='comp'/> 
                             <span className='top-wordss'>Me</span>
                         </div>
+                    </Link>
                     <Link to="/community">
                         <div className="side-log-o" style={{textDecoration: 'none', color: '#ff7e00', margin: '20px 0'}}>
                             <LocationOn className='comp'/> 

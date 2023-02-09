@@ -9,7 +9,7 @@ import Fullpost from './fullpost'
 import { AuthContext } from '../authContext/authContext';
 import { withRouter, useNavigate, useParams} from 'react-router-dom';
 import { useLocation } from "react-router-dom"
-import { API_URL } from '../services/user.service';
+import { API_URL } from '../BaseUrl/baseurl';
 import authHeader from '../services/auth-header';
 
 

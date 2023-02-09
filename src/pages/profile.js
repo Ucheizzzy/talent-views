@@ -12,7 +12,7 @@ import { AuthContext } from '../authContext/authContext';
 import ProfileVideo from '../components/profileVideo'
 import ProfilePostModal from '../components/profilePostModal'
 import Media from "react-media"
-import { API_URL } from '../services/user.service';
+import { API_URL } from '../BaseUrl/baseurl';
 import authHeader from '../services/auth-header';
 import { getUser } from '../Redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';

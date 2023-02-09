@@ -1,74 +1,74 @@
-const MovieReducer = (state, action) => {
+const UserReducer = (state, action) => {
   switch (action.type) {
-    case "GET_MOVIES_START":
+    case "GET_USERS_START":
       return {
-        movies: [],
+        users: [],
         isFetching: true,
         error: false,
       };
-    case "GET_MOVIES_SUCCESS":
+    case "GET_USERS_SUCCESS":
       return {
-        movies: action.payload,
+        users: action.payload,
         isFetching: false,
         error: false,
       };
-    case "GET_MOVIES_FAILURE":
+    case "GET_USERS_FAILURE":
       return {
-        movies: [],
+        users: [],
         isFetching: false,
         error: true,
       };
-    case "CREATE_MOVIE_START":
+    case "CREATE_USER_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "CREATE_MOVIE_SUCCESS":
+    case "CREATE_USER_SUCCESS":
       return {
-        movies: [...state.movies, action.payload],
+        users: [...state.movies, action.payload],
         isFetching: false,
         error: false,
       };
-    case "CREATE_MOVIE_FAILURE":
+    case "CREATE_USER_FAILURE":
       return {
         ...state,
         isFetching: false,
         error: true,
       };
-    case "UPLOAD_MOVIE_START":
+    case "UPLOAD_USER_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "UPLOAD_MOVIE_SUCCESS":
+    case "UPLOAD_USER_SUCCESS":
       return {
-        movies: state.movies.map(
-          (movie) => movie.id === action.payload.id && action.payload
+        users: state.users.map(
+          (user) => user.id === action.payload.id && action.payload
         ),
         isFetching: false,
         error: false,
       };
-    case "UPLOAD_MOVIE_FAILURE":
+    case "UPLOAD_USER_FAILURE":
       return {
         ...state,
         isFetching: false,
         error: true,
       };
-    case "DELETE_MOVIE_START":
+    case "DELETE_USER_START":
       return {
         ...state,
         isFetching: true,
         error: false,
       };
-    case "DELETE_MOVIE_SUCCESS":
+    case "DELETE_USER_SUCCESS":
       return {
-        movies: state.movies.filter((movie) => movie._id !== action.payload),
+        users: state.users.filter((user) => user.id !== action.payload),
         isFetching: false,
         error: false,
       };
-    case "DELETE_MOVIE_FAILURE":
+    case "DELETE_USER_FAILURE":
       return {
         ...state,
         isFetching: false,
@@ -79,4 +79,4 @@ const MovieReducer = (state, action) => {
   }
 };
 
-export default MovieReducer;
+export default UserReducer;

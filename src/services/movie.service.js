@@ -1,7 +1,9 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-export const API_URL = "http://localhost:8000/api/";
+// export const API_URL = "https://eng.talentcroft.com/api/";
+
+const API_URL = "http://localhost:8001/api/"
 
 
 const getMovieBoard = () => {

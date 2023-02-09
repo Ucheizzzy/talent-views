@@ -3,23 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import { UserContextProvider } from './Context/userContext/userContext';
+// import { MovieContextProvider } from './Context/movieContext/movieContext';
 import { AuthContextProvider } from './authContext/authContext';
-import { UserContextProvider } from './userContext/userContext';
-import { MovieContextProvider } from './Context/movieContext/movieContext';
+import { UserContextProvider } from './Context/userContext/UserContext';
+import { MovieContextProvider } from './Context/movieContext/MovieContext'
 import { Provider } from "react-redux";
 import store from './Redux/store/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <AuthContextProvider>
+    <AuthContextProvider>
       <UserContextProvider>
-        <MovieContextProvider> */}
+        <MovieContextProvider>
         <Provider store={store} >
           <App />
         </Provider>  
-        {/* </MovieContextProvider>
+        </MovieContextProvider>
       </UserContextProvider>
-    </AuthContextProvider> */}
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

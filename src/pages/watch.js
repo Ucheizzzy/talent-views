@@ -10,6 +10,7 @@ import ReactPlayer from 'react-player'
 // import ReactPlayer from '../../node_modules/react-player/lib/index'
 import PlayerControls from '../components/playerControls'
 import Media from "react-media"
+import { API_URL } from '../BaseUrl/baseurl'
 
 
 const format = (seconds) => {
@@ -167,7 +168,7 @@ const Watch = () => {
     useEffect(() => {
         const getMovie = async () => {
             try {
-                const {data} = await axios.get(`http://127.0.0.1:8000/api/moviefile/${params.id}`, config)
+                const {data} = await axios.get(`${API_URL}moviefile/${params.id}`, config)
                 setVideo(data?.data?.movieFile)
                 window.scrollTo(0, 0);
             } catch (err) {
