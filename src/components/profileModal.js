@@ -9,8 +9,6 @@ import picture from '../images/stockphoto.jpeg'
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import { AuthContext } from '../authContext/authContext';
 import { API_URL } from '../BaseUrl/baseurl';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../Redux/actions/user';
 
 
 
@@ -31,13 +29,7 @@ const Modal = ({closeModal}) => {
     const [submitted, setSubmitted] = useState(false)
     const [profile, setProfile] = useState([])
 
-    const dispatch = useDispatch();
-    const user = useSelector(state => state?.user?.user);
-
-    useEffect(() => {
-        dispatch(getUser());
-    }, []);
-
+    const {user} = useContext(AuthContext)
 
     const handleShowHide = () => {
         setShow(!show)

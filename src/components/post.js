@@ -6,9 +6,9 @@ import ReactPlayer from 'react-player'
 // import { Link } from 'react-router-dom'
 import '../css/video.modules.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../Redux/actions/user'
 import { format } from 'timeago.js'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../authContext/authContext'
 
 
 
@@ -35,6 +35,7 @@ const Dashboard = ({video, post}) => {
 //     const [show, setShow] = useState(false)
 //     const [isLiked, setIsLiked] = useState(false)
 //     const [isUpvoted, setIsUpvoted] = useState(false)
+const {user} = useContext(AuthContext)
     const [timeDisplayFormat, setTimeDisplayFormat] = useState('normal')
 //     const [upvote, setUpvote] = useState(video.upvotes?.length)
 //     const [like, setLike] = useState(video.likes?.length)

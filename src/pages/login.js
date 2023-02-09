@@ -42,9 +42,6 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const { isFetching, dispatch } = useContext(AuthContext);
-
-    const { isLoggedIn } = useSelector(state => state.auth);
-    const { message } = useSelector(state => state.message);
   
     // const dispatch = useDispatch();
     const onChangeEmail = (e) => {
@@ -85,11 +82,7 @@ const Login = () => {
 
     return (
         <div className='log-login' 
-        style=
-        {
-            {backgroundImage: `url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)`}
-            }
-            >
+        style={{backgroundImage: `url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)`}}>
             <div className="top-container">
                 <div className="my-logo">
                     <span>talentcroft</span>
@@ -116,13 +109,13 @@ const Login = () => {
                         </div>
 
                         <button className="log-button" >Sign In</button>
-                        {message && (
+                        {/* {message && ( */}
                           <div className="form-group">
                             <div className="alert alert-danger" role="alert">
-                              {message}
+                              {/* {message} */}
                             </div>
                           </div>
-                        )}
+                        {/* )} */}
                     <span className="signup-span">New to talentcroft views? Sign up <Link to='/register' 
                     style={{textDecoration: 'none', color: 'white'}}><b>here</b></Link></span>
                 </form>

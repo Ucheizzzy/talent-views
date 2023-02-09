@@ -7,10 +7,7 @@ import axios from 'axios'
 import ProfileModal from '../components/profileModal'
 import { Link, useParams } from 'react-router-dom'
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
-import Profile from '../pages/profile'
 import { API_URL } from '../BaseUrl/baseurl'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../Redux/actions/user'
 
 const Account = () => {
     const [image, setImage] = useState({})
@@ -22,14 +19,7 @@ const Account = () => {
     const [bio, setBio] = useState(false)
     const [show, setShow] = useState(false)
     const [loading, setLoading] = useState(false)
-    
-
-    const dispatch = useDispatch();
-    const user = useSelector(state => state?.user?.user);
-
-    useEffect(() => {
-        dispatch(getUser());
-    }, []);
+    const {user, dispatch} = useContext(AuthContext)
 
     const date = (params) => {
         const time = new Date(params) 

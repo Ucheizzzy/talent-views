@@ -22,6 +22,7 @@ const Dashboard = () => {
     const [post, setPost] = useState([])
     // const [user, setUser] = useState({})
     const {user} = useContext(AuthContext)
+    console.log(user)
     const profile = user?.data?.user
 
     useEffect(()=> {

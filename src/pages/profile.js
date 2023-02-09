@@ -14,8 +14,6 @@ import ProfilePostModal from '../components/profilePostModal'
 import Media from "react-media"
 import { API_URL } from '../BaseUrl/baseurl';
 import authHeader from '../services/auth-header';
-import { getUser } from '../Redux/actions/user';
-import { useDispatch, useSelector } from 'react-redux';
 
 
 
