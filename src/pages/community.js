@@ -11,7 +11,6 @@ import {
   People,
   DashboardOutlined,
 } from '@material-ui/icons'
-import axios from 'axios'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import Navbar from '../components/navbar'
 import PostModal from '../components/postModal'

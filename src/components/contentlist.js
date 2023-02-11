@@ -17,21 +17,35 @@ const Contentlist = (film, lists) => {
   console.log(movies, newlists)
 
   const [featured, setFeatured] = useState([])
-  const [movies, setMovies] = useState([])
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const res = await axios.get(`http://127.0.0.1:8000/api/movie/allmovies`)
-        console.log(res?.data?.data)
-        // setMovies(res?.data?.data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    fetchMovies()
-  }, [])
+  // useEffect(() => {
+  //     const getFeatured = async () => {
+  //         const {data}= await axios.get('/movies/featured', {
+  //             headers: {
+  //                 token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
+  //             }
 
+  //         })
+  //         setFeatured(data)
+  //     }
+  //     getFeatured()
+  // }, [history])
+
+  // const [slideNumber, setSlideNumber] = useState(0);
+  // const [isMoved, setIsMoved] = useState(false);
+
+  // const handleClick = (direction) => {
+  //     setIsMoved(true)
+  //     let distance = listRef.current.getBoundingClientRect().x - 50
+  //     if (direction === 'left' &&  slideNumber > 0){
+  //         setSlideNumber(slideNumber - 1)
+  //         listRef.current.style.transform = `translateX(${230 + distance}px)`
+  //     }
+  //     if (direction === 'right' && slideNumber < 5){
+  //         setSlideNumber(slideNumber + 1)
+  //         listRef.current.style.transform = `translateX(${-230 + distance}px)`
+  //     }
+  // }
   return (
     <div className='content-list'>
       <span className='contentlistTitle'>Recommended Films</span>

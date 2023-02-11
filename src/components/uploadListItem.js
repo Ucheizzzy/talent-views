@@ -7,8 +7,6 @@ import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 const Contentlistitem = ({ upload, item }) => {
   const [hovered, setIshovered] = useState(false)
 
-  const [hovered, setIshovered] = useState(false)
-
   return (
     // <Link to={`/community/${upload._id}`}>
     <div className='upload-list-item'>
