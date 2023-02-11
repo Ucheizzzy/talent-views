@@ -1,16 +1,16 @@
-import MovieReducer from "./MovieReducer";
-import { createContext, useReducer } from "react";
+import MovieReducer from './movieReducer'
+import { createContext, useReducer } from 'react'
 
 const INITIAL_STATE = {
   movies: [],
   isFetching: false,
   error: false,
-};
+}
 
-export const MovieContext = createContext(INITIAL_STATE);
+export const MovieContext = createContext(INITIAL_STATE)
 
 export const MovieContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(MovieReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(MovieReducer, INITIAL_STATE)
 
   return (
     <MovieContext.Provider
@@ -23,5 +23,5 @@ export const MovieContextProvider = ({ children }) => {
     >
       {children}
     </MovieContext.Provider>
-  );
-};
+  )
+}

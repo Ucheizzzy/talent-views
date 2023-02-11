@@ -11,7 +11,6 @@ import UploadList from '../components/uploadlist'
 import authHeader from '../services/auth-header'
 import { API_URL } from '../BaseUrl/baseurl'
 
-
 const Home = ({ type }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [lists, setLists] = useState([])
@@ -20,10 +19,10 @@ const Home = ({ type }) => {
 
   const getAll = async () => {
     try {
-       await axios
+      await axios
         .get(API_URL + 'movie/allmovies', { headers: authHeader() })
         .then((response) => {
-          setFilm(response?.data?.data);
+          setFilm(response?.data?.data)
         })
     } catch (err) {
       console.log(err)
@@ -35,10 +34,15 @@ const Home = ({ type }) => {
 
   const getType = async () => {
     try {
-        await axios
-        .get(`${API_URL}movielist/type${type ? '?type='+ type : ''}${genre ? '&genre='+ genre : ''}`, { headers: authHeader() })
+      await axios
+        .get(
+          `${API_URL}movielist/type${type ? '?type=' + type : ''}${
+            genre ? '&genre=' + genre : ''
+          }`,
+          { headers: authHeader() }
+        )
         .then((response) => {
-          setLists(response?.data?.data);
+          setLists(response?.data?.data)
         })
     } catch (err) {
       console.log(err)
@@ -46,23 +50,20 @@ const Home = ({ type }) => {
   }
   useEffect(() => {
     getType()
-  },[type, genre])
-
-
-  
+  }, [type, genre])
 
   return (
     <div className='App'>
       <Navbar />
       <div className='home-body'>
-        <Featured type={ type } setGenre={setGenre}/>
+        <Featured type={type} setGenre={setGenre} />
         <div className='bottom-body'>
-          <Contentlist film={film} lists={lists}/>
+          <Contentlist film={film} lists={lists} />
           <UploadList />
           {lists.map((list) => (
-              <div key={list?.id}>
-                <List list={list}/>
-              </div>
+            <div key={list?.id}>
+              <List list={list} />
+            </div>
           ))}
         </div>
       </div>

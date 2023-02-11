@@ -52,9 +52,13 @@ const Contentlist = (film, lists) => {
       <div className='content-wrapper'>
         <div className='content-container'>
           {movies.map((card) => (
-            <Link to={`/content/${card.id}`} key={card.id} style={{textDecoration: 'none'}} >
-              <ContentlistItem card={card}/> 
-            </Link> 
+            <Link
+              to={`/content/${card.id}`}
+              key={card.id}
+              style={{ textDecoration: 'none' }}
+            >
+              <ContentlistItem card={card} />
+            </Link>
           ))}
         </div>
       </div>
