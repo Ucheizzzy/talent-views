@@ -20,35 +20,42 @@ import { Routes, Route } from 'react-router-dom'
 import { API_URL } from '../services/user.service'
 import axios from 'axios'
 import authHeader from '../services/auth-header'
-import { useDispatch, useSelector } from 'react-redux'
-import { getPost } from '../Redux/actions/post'
+import { PostContext } from '../Context/postContext/PostContext'
+import { deleteMovie, getPosts } from '../Context/postContext/apiCalls'
+import { AuthContext } from '../authContext/authContext'
 
 const Community = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const dispatch = useDispatch()
-  const posts = useSelector((state) => state?.post?.posts)
-  console.log(posts)
-
+  const { user } = useContext(AuthContext)
+  const { posts, dispatch } = useContext(PostContext)
+  const [loading, setLoading] = useState(false)
+  const profile = user?.data?.user
   useEffect(() => {
-    dispatch(getPost())
+    setLoading(true)
+    getPosts(dispatch)
+    setLoading(false)
   }, [dispatch])
 
+  if (posts === [] || posts.length === 0) {
+    return null
+  }
   return (
     <>
       <div className='community-container'>
         <Navbar />
         <div className='community-header'>
+          {loading && <div className='big-loader'></div>}
           <div className='community-bar'>
             <Link to='/timeline'>
               <div className='top-logo'>
                 <DashboardOutlined className='c-comp' /> Timeline
               </div>
             </Link>
-            {/* <Link to={`/profile/${user.username}`}> */}
-            <div className='top-logo'>
-              <Home className='c-comp' /> Me
-            </div>
-            {/* </Link> */}
+            <Link to={`/profile/${profile?.id}`}>
+              <div className='top-logo'>
+                <Home className='c-comp' /> Me
+              </div>
+            </Link>
           </div>
         </div>
         <div className='premium-container'>

@@ -6,8 +6,6 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
-import { register } from "../Redux/actions/auth";
 import '../css/register.modules.css'
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
@@ -79,8 +77,8 @@ const Register = () => {
     const [confirmpassword, setConfirmPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
 
-    const { message } = useSelector(state => state.message);
-    const dispatch = useDispatch();
+    // const { message } = useSelector(state => state.message);
+    // const dispatch = useDispatch();
 
   
     const onChangeFirstname = (e) => {
@@ -121,27 +119,27 @@ const Register = () => {
       setOpen(!open)
   }
   
-    const handleRegister = (e) => {
-      e.preventDefault();
-      console.log(first_name, last_name, email, password, phone_number)
-      setSuccessful(false);
+    // const handleRegister = (e) => {
+    //   e.preventDefault();
+    //   console.log(first_name, last_name, email, password, phone_number)
+    //   setSuccessful(false);
   
-      form.current.validateAll();
+    //   form.current.validateAll();
 
-    if (password !== confirmpassword) setErrMessage("Password does not match!")
+    // if (password !== confirmpassword) setErrMessage("Password does not match!")
 
-    if (checkBtn.current.context._errors.length === 0 && password === confirmpassword) {
-        dispatch(register(first_name, last_name, email, phone_number, password))
-          .then(() => {
-            navigate("/success");
-            window.location.reload();
-            setSuccessful(true);
-          })
-          .catch((error) => {
-            setSuccessful(false);
-          });
-      } 
-    };
+    // if (checkBtn.current.context._errors.length === 0 && password === confirmpassword) {
+    //     dispatch(register(first_name, last_name, email, phone_number, password))
+    //       .then(() => {
+    //         navigate("/success");
+    //         window.location.reload();
+    //         setSuccessful(true);
+    //       })
+    //       .catch((error) => {
+    //         setSuccessful(false);
+    //       });
+    //   } 
+    // };
     
     return (
         <div className='login' 
@@ -164,16 +162,18 @@ const Register = () => {
             <div className="intro">
                 <span>Watch unlimited content to your hearts <strong className='strong'> content...</strong></span>
 
-        <Form onSubmit={handleRegister} className='form' ref={form}>
-          {!successful && (
+        <Form 
+        // onSubmit={handleRegister} 
+        className='form' ref={form}>
+          {/* {!successful && ( */}
             <div>
-              {message && (
+              {/* {message && ( */}
             <div className="form-group">
               <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
-                {message}
+                {/* {message} */}
               </div>
             </div>
-          )}
+          {/* // )} */}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
               <div className="form-group">
                 <label htmlFor="username" className='labels'>First Name</label>

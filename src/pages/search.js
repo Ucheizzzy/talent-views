@@ -6,8 +6,9 @@ import SearchItem from '../components/searchItem'
 import SearchBar from '../components/searchBar'
 import { useNavigate, useSearchParams, creareSearchParams, useLocation, Link } from 'react-router-dom'
 import { useDebounce } from 'use-debounce';
-import { useDispatch, useSelector } from "react-redux";
-import { getMovie } from '../Redux/actions/movie'
+import { PostContext } from '../Context/postContext/PostContext'
+import { MovieContext } from '../Context/movieContext/MovieContext'
+import { deleteMovie, getMovies } from '../Context/movieContext/apiCalls'
 
 const Search = () => {
     const history = useNavigate()
@@ -15,12 +16,23 @@ const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     // const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
 
-    const dispatch = useDispatch();
-    const movies = useSelector(state => state?.movie?.movies);
-
+    const { movies, dispatch } = useContext(MovieContext);
+    const [loading, setLoading] = useState(false)
+  
     useEffect(() => {
-        dispatch(getMovie());
-    }, []);
+      setLoading(true)
+       getMovies(dispatch);
+       setLoading(false)
+  
+    }, [dispatch])
+   
+
+    // const dispatch = useDispatch();
+    // const movies = useSelector(state => state?.movie?.movies);
+
+    // useEffect(() => {
+    //     dispatch(getMovie());
+    // }, []);
 
     const handleFilter = (e) => {
         e.preventDefault()
@@ -40,6 +52,7 @@ const Search = () => {
         }
       }, [searchTerm, history]);
 
+
   return (
       <>
       <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -52,7 +65,7 @@ const Search = () => {
         
         >
             {
-                movies.filter((content) => {
+                movies && movies.filter((content) => {
                     if (searchTerm === "") {
                         return content
                     } else if (content.name.toLowerCase().includes(searchTerm.toLowerCase()) || content.director.toLowerCase().includes(searchTerm.toLowerCase()) || content.description.toLowerCase().includes(searchTerm.toLowerCase()) || content.genre.toLowerCase().includes(searchTerm.toLowerCase())) {

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 // import HorizontalScroll from 'react-scroll-horizontal'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { API_URL } from '../services/user.service'
+import { API_URL } from '../BaseUrl/baseurl'
 import authHeader from '../services/auth-header'
 
 const Contentlist = () => {

@@ -10,6 +10,7 @@ import '../css/featured.modules.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/opacity.css'
 import authHeader from '../services/auth-header'
+import { API_URL } from '../BaseUrl/baseurl'
 
 const Featured = ({ type, setGenre, listdata, film, config }) => {
   const [random, setRandom] = useState([])
@@ -29,7 +30,7 @@ const Featured = ({ type, setGenre, listdata, film, config }) => {
     const getRandom = async () => {
       try {
         const { data } = await axios.get(
-          'http://127.0.0.1:8000/api/movie/random?type=' + type,
+          API_URL + 'movie/random?type=' + type,
           { headers: authHeader() }
         )
         setRandom(data?.movie)
@@ -125,16 +126,32 @@ const Featured = ({ type, setGenre, listdata, film, config }) => {
             <span>Directed By {random?.director}</span>
             <span>{random?.year}</span>
             <span>{time_convert(random?.episodes[0]?.duration)}hr</span>
-            {/* <Link to={`/content/${content._id}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}> */}
-            <span className='somemore'>more...</span>
-            {/* </Link> */}
+            <Link
+              to={`/content/${random?.id}`}
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <span className='somemore'>more...</span>
+            </Link>
           </div>
         ) : null}
         <div className='buttons'>
           <button className='play'>
-            {/* <Link to={`/content/watch/${video}`} style={{textDecoration: 'none', color: 'white',display: 'flex', alignItems: 'center'}}> */}
-            <span className='actions'>Watch Now</span>
-            {/* </Link> */}
+            <Link
+              to={`/content/${random?.id}`}
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <span className='actions'>Watch Now</span>
+            </Link>
           </button>
           <button
             className='more-info'

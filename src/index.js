@@ -4,22 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './authContext/authContext';
-import { UserContextProvider } from './userContext/userContext';
-import { MovieContextProvider } from './Context/movieContext/movieContext';
-import { Provider } from "react-redux";
-import store from './Redux/store/store';
+import { UserContextProvider } from './Context/userContext/UserContext';
+import { MovieContextProvider} from './Context/movieContext/MovieContext'
+import { PostContextProvider } from './Context/postContext/PostContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <AuthContextProvider>
+    <AuthContextProvider>
       <UserContextProvider>
-        <MovieContextProvider> */}
-        <Provider store={store} >
+      <PostContextProvider>
+        <MovieContextProvider>
           <App />
-        </Provider>  
-        {/* </MovieContextProvider>
+        </MovieContextProvider>
+        </PostContextProvider>
       </UserContextProvider>
-    </AuthContextProvider> */}
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
