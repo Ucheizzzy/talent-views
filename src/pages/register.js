@@ -8,6 +8,7 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import '../css/register.modules.css'
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { API_URL } from '../BaseUrl/baseurl';
 
 
 const required = (value) => {
@@ -119,27 +120,26 @@ const Register = () => {
       setOpen(!open)
   }
   
-    // const handleRegister = (e) => {
-    //   e.preventDefault();
-    //   console.log(first_name, last_name, email, password, phone_number)
-    //   setSuccessful(false);
+    const handleRegister = async (e) => {
+      e.preventDefault();
+      setSuccessful(false);
   
-    //   form.current.validateAll();
+      form.current.validateAll();
 
-    // if (password !== confirmpassword) setErrMessage("Password does not match!")
+    if (password !== confirmpassword) setErrMessage("Password does not match!")
 
-    // if (checkBtn.current.context._errors.length === 0 && password === confirmpassword) {
-    //     dispatch(register(first_name, last_name, email, phone_number, password))
-    //       .then(() => {
-    //         navigate("/success");
-    //         window.location.reload();
-    //         setSuccessful(true);
-    //       })
-    //       .catch((error) => {
-    //         setSuccessful(false);
-    //       });
-    //   } 
-    // };
+    if (checkBtn.current.context._errors.length === 0 && password === confirmpassword) {
+        await axios.get(API_URL + '')
+          .then(() => {
+            navigate("/success");
+            window.location.reload();
+            setSuccessful(true);
+          })
+          .catch((error) => {
+            setSuccessful(false);
+          });
+      } 
+    };
     
     return (
         <div className='login' 
