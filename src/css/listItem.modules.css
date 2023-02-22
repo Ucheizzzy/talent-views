@@ -7,7 +7,7 @@
     height: 100%;
     border-radius: 5px;
     object-fit: cover;
-    /* transition: 0.3s; */
+    transition: 0.5s;
 }
 
 .list-image-two {
@@ -27,22 +27,23 @@
     /* height: 140px; */
     background-color: black;
     color: #fff;
-    margin-right: 3px;
-    /* position: relative; */
-    /* cursor: pointer; */
-    /* z-index: 1; */
-    /* transition: 0.1s; */
-
+    margin: 0 3px;
     width: 220px;
     height: 130px;
    /*  background-color: black;
-    color: #fff;
-    margin-right: 3px; */
-    /* border-radius: 5px; */
     /* position: relative; */
-    /* cursor: pointer; */
+    cursor: pointer;
     /* z-index: 1; */
-    /* transition: 0.1s; */
+    /* transition: 0.9s; */
+}
+
+.listItemHovered {
+    width: 310px;
+    position: absolute;
+    height: 100%;
+    top: -140px;
+    margin-left: -20px;
+    /* right: 0; */
 }
 
 .listItem-sm {
@@ -51,15 +52,19 @@
     margin-right: 3px;
     width: 220px;
     height: 130px;
+    transition: 0.9s; 
 }
  
 .listItem:hover {
-    width: 310px;
-    /* height: 300px; */
+    /* width: 310px;
     position: absolute;
     top: -140px;
+    left: 0;
+    right: 0; */
     /* z-index: 999; */
-    transition: 0.1s; 
+    left: 0;
+    right: 0;
+    margin-right: 10px;
 }
 
 .listItem:hover > img{
@@ -72,16 +77,18 @@
     height: 140px;
     border-radius: 5px;
     object-fit: cover;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
+    top: 0;
     /* z-index: 1; */
 }
 
 .itemInfo {
-    height: 115px;
+    height: 140px;
     white-space: nowrap;
     overflow: auto;
     text-overflow: ellipsis; 
+    z-index: 999;
     /* display: flex; */
     /* flex-direction: column; */
     padding: 5px;

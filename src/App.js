@@ -42,7 +42,7 @@ function App() {
             <Route path='/content/watch/:id' element={<Watch />} />
             <Route path='/content/:id' element={<ContentDescription />} />
             <Route path='/profile/user/*' element={<PostModal />} />
-            <Route path='/account/:first_name' element={<Account />} />
+            <Route path='/account/:id' element={<Account />} />
             </>
           )}
           

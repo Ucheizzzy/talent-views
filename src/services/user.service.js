@@ -1,29 +1,24 @@
-import axios from "axios";
-import { useState } from "react";
-import authHeader from "./auth-header";
+import axios from 'axios'
+import { useState } from 'react'
+import authHeader from './auth-header'
 
 // export const API_URL = "https://eng.talentcroft.com/api/";
-const API_URL = "http://localhost:8001/api/"
+const API_URL = 'http://localhost:8000/api/'
 
 const getPublicContent = () => {
-  return axios.get(API_URL + "all");
-};
+  return axios.get(API_URL + 'all')
+}
 
 const getUserBoard = () => {
-  return axios.get(API_URL + "user/profile", { headers: authHeader() })
-};
+  return axios.get(API_URL + 'user/profile', { headers: authHeader() })
+}
 
 const getModeratorBoard = () => {
-  return axios.get(API_URL + "mod", { headers: authHeader() });
-};
+  return axios.get(API_URL + 'mod', { headers: authHeader() })
+}
 
 const getAdminBoard = () => {
-  return axios.get(API_URL + "admin", { headers: authHeader() });
-};
+  return axios.get(API_URL + 'admin', { headers: authHeader() })
+}
 
-export {
-  getPublicContent,
-  getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
-};
+export { getPublicContent, getUserBoard, getModeratorBoard, getAdminBoard }

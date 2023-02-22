@@ -16,70 +16,15 @@ const ListItem = ({ index, item }) => {
   const [caption, setCaption] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  function time_convert(num)
-    { 
-    const hours = Math.floor(num / 60).toFixed(2);  
-    const minutes = num % 60;
-    return `${hours}:${minutes}`;         
+  function time_convert(num){ 
+    const minutes = Math.floor(num / 60) 
+    const seconds = num % 60;
+    if (minutes === 0) {
+      return `${seconds} seconds`
+    } else {
+      return `${minutes}:${seconds} minutes`;         
     }
-
-  // useEffect(() => {
-
-  //     const getVideo = async () => {
-
-  //         try {
-  //             const { data } = await axios.get('movies/find/'+ item, {
-  //                 headers: {
-  //                     token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M'
-  //                 }
-  //             })
-  //             setCaption(data)
-  //             // window.scrollTo(0, 0);
-  //         } catch (err) {
-  //             console.log(err)
-  //         }
-  //     }
-  //     getVideo()
-  // }, [item, history])
-
-  // useEffect(() => {
-
-  //     const getImage = async () => {
-
-  //         try {
-  //             const { data } = await axios.get('movies/find/'+ item, {
-  //                 headers: {
-  //                     token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1n'
-  //                 }
-  //             })
-  //             setIsLoading(false)
-  //             setMovie(data.thumbnail[0].thumbnail)
-
-  //         } catch (err) {
-  //             console.log(err.message)
-  //             setIsLoading(false)
-  //         }
-  //     }
-  //     getImage()
-  // }, [item, history])
-
-  // useEffect(() => {
-  //   const getCaption = async () => {
-  //     try {
-  //       const { data } = await axios.get('movies/find/' + item, {
-  //         headers: {
-  //           token:
-  //             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzQ1ZGJhNWQ5ZGY1NmEzMzhhNTFmNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDA2MzIyMjYsImV4cCI6MTY0MzIyNDIyNn0.FliBS9psdYuSEbr2OHwGf4iurw4ZjDYUJlbDggfnv1M',
-  //         },
-  //       })
-
-  //       setVideo(data.trailer[0].trailer)
-  //     } catch (err) {
-  //       console.log(err)
-  //     }
-  //   }
-  //   getCaption()
-  // }, [item, history])
+  }
 
   return (
     <>
@@ -100,7 +45,7 @@ const ListItem = ({ index, item }) => {
                 />
 
                 {isHovered && (
-                  <>
+                  <div className='listItemHovered'>
                     <video
                       className='listVideo'
                       src={item?.video}
@@ -125,7 +70,7 @@ const ListItem = ({ index, item }) => {
                       <div className='list-item-caption'>{item?.description}</div>
                       <div className='genre'>{item?.genre}</div>
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
             </div>

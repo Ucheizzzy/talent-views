@@ -129,7 +129,7 @@ const Navbar = ({ searchTerm,
                     <div className="profile">
                         <ArrowDropDown className='icon'/>
                         <div className="options">
-                            <Link to={`/account/${profile.first_name}`} style={{textDecoration: 'none', color: 'white'}}>
+                            <Link to={`/account/${profile.id}`} style={{textDecoration: 'none', color: 'white'}}>
                                 <span className='drop-option'>Account</span>
                             </Link>
                             <span className='drop-option' 
